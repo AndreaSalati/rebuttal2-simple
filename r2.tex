@@ -6,7 +6,7 @@
 \bigskip
 
 % ------------------------------------------------------------------ R2.1
-\subsection*{R2.1: Conditioning variable of the decomposition within one ZT}
+\subsection*{R2.1}
 
 \reviewer{In response to my previous comment on the validity of their variance decomposition (R2.2 in the author's response), the authors argue that the conditioning variable $S$ in their Equation 13 (revised main text) is one replicate at one ZT time point and that the $\sigma_{\text{bio}}/\sigma_{\text{tech}}$ split is a ``further decomposition that lives entirely inside the within term''.
 While this is OK, the author's decomposition purely within a ZT still must obey the law of total variance, since it is an identity that holds for any conditioning variable.
@@ -122,7 +122,7 @@ depth (UMI per cell) & true $\sbio$ & Twin (Eq.~14) & vector form & oracle \\
 The Methods now define the conditioning variable $\theta$, the exact split in Eq.~\eqref{eq:ltv}, and the circular form in Eq.~\eqref{eq:total-expectation}. They state that Eq.~14 is exact only when $r(\theta)$ is constant and $m(\theta) = \theta$, and that otherwise it carries the three errors above. They describe the vector form and report its test against the Twin method.
 
 % ------------------------------------------------------------------ R2.2
-\subsection*{R2.2 --- Consistency with the law of total variance}
+\subsection*{R2.2}
 
 \reviewer{In the response R2.2, the authors go on to say that they ``never define $\sigma_{\text{tech}}$ as the within-term of a latent phase-cluster decomposition (an average over heterogeneous sub-populations)\dots\ so there is no averaging over sub-populations with differing variances to reconcile''.
 Does this mean the author's procedure is not consistent with the Law of Total Variance, which must have an averaging procedure across sub-populations?
@@ -132,7 +132,7 @@ These points should be more carefully discussed in the Main Text and Methods, si
 \response
 
 % ------------------------------------------------------------------ R2.3
-\subsection*{R2.3 --- Aggregation across the cycle and the SABER-FISH analysis}
+\subsection*{R2.3}
 
 \reviewer{The revised Methods state that Eq.~14 ``becomes near-exact ($R^2 \approx 1$) only once variances are aggregated across populations that span the circadian cycle'', and draw from this the requirement that ``the data must cover most of the circadian cycle''.
 In the response letter, the authors further comment that ``$\sigma_{\text{bio}}$ is a property of a population sampled across the cycle, not of an individual ZT''.
@@ -175,7 +175,7 @@ None of these have been defined.}
 \response
 
 % ------------------------------------------------------------------ R2.4
-\subsection*{R2.4 --- Aggregation with few ZT samples}
+\subsection*{R2.4}
 
 \reviewer{The authors also comment that the aggregation procedure creates a requirement of sufficient ZT samples across 24 hours.
 In their simulations, they use 12 and 8 ZT samples, which is greater than the number of samples one would get from typical scRNA-seq datasets.
@@ -185,7 +185,7 @@ To better understand the limits of the aggregation procedure, the authors should
 \response
 
 % ------------------------------------------------------------------ R2.5
-\subsection*{R2.5 --- Identical mRNA and protein oscillations in the FLASH-seq data}
+\subsection*{R2.5}
 
 \reviewer{In the application of the method to phase inference in asynchronized FLASH-seq data, I appreciate the new results presented and agree that they provide more evidence that biologically meaningful oscillations are being reconstructed.
 However, I'm still puzzled by the fact that the mRNA and protein oscillations look identical, and not phase shifted at all.
@@ -197,7 +197,7 @@ If so, I would recommend discussing this in the Main Text and also toning down t
 \response
 
 % ------------------------------------------------------------------ R2.6
-\subsection*{R2.6 --- Strength of the $\sigma_u$ claims}
+\subsection*{R2.6}
 
 \reviewer{In the main text the authors say ``Across all tissues, cells with higher posterior uncertainty $\sigma_u$ showed larger phase errors than cells with lower $\sigma_u$ (Fig.~S3C, E, F), consistent with the per-cell correlation between $\sigma_u$ and phase error''.
 In the Discussion they say ``The posterior uncertainty $\sigma_u$ consistently predicts inference quality across simulations and diverse biological datasets, enabling principled quality control without external time labels.''

@@ -1,0 +1,102 @@
+% !TeX root = main.tex
+\section*{Reviewer 2}
+
+\noindent\textit{Overall assessment.} The reviewer finds that several questions were answered satisfactorily but that the central methodological issues are not resolved: the statistical basis of the variance decomposition, the use of the SABER-FISH data given the averaging requirement, the weaker than stated uncertainty and $\sigma_u$ results, and the tone of the Abstract, Introduction and Discussion. The major points follow.
+
+\bigskip
+
+% ------------------------------------------------------------------ R2.1
+\subsection*{R2.1 --- Conditioning variable of the decomposition within one ZT}
+
+\reviewer{In response to my previous comment on the validity of their variance decomposition (R2.2 in the author's response), the authors argue that the conditioning variable $S$ in their Equation 13 (revised main text) is one replicate at one ZT time point and that the $\sigma_{\text{bio}}/\sigma_{\text{tech}}$ split is a ``further decomposition that lives entirely inside the within term''.
+While this is OK, the author's decomposition purely within a ZT still must obey the law of total variance, since it is an identity that holds for any conditioning variable.
+Therefore, if Eq.~14 is to be more than an analogy, it must itself be a total-variance decomposition within one single ZT timepoint with respect to some conditioning variable, and the authors need to precisely define what that variable is.
+Otherwise, Eq.~14 appears quite ad hoc and it is impossible to interpret what the terms $\sigma_{\text{bio}}$ and $\sigma_{\text{tech}}$ are supposed to represent in a statistically rigorous framework.}
+
+\response
+
+% ------------------------------------------------------------------ R2.2
+\subsection*{R2.2 --- Consistency with the law of total variance}
+
+\reviewer{In the response R2.2, the authors go on to say that they ``never define $\sigma_{\text{tech}}$ as the within-term of a latent phase-cluster decomposition (an average over heterogeneous sub-populations)\dots\ so there is no averaging over sub-populations with differing variances to reconcile''.
+Does this mean the author's procedure is not consistent with the Law of Total Variance, which must have an averaging procedure across sub-populations?
+If so, when the authors say that ``At the level of individual time points the additivity is only approximate'', is the approximation coming partly from this departure from the Law of Total Variance?
+These points should be more carefully discussed in the Main Text and Methods, since the current version provides little clarity or discussion on this important issue.}
+
+\response
+
+% ------------------------------------------------------------------ R2.3
+\subsection*{R2.3 --- Aggregation across the cycle and the SABER-FISH analysis}
+
+\reviewer{The revised Methods state that Eq.~14 ``becomes near-exact ($R^2 \approx 1$) only once variances are aggregated across populations that span the circadian cycle'', and draw from this the requirement that ``the data must cover most of the circadian cycle''.
+In the response letter, the authors further comment that ``$\sigma_{\text{bio}}$ is a property of a population sampled across the cycle, not of an individual ZT''.
+This is made explicit in Eq.~16 of the revised Main Text.
+This then raises the following important questions which I do not currently understand:}
+
+\subsubsection*{R2.3a}
+
+\reviewer{How can this requirement be reconciled with the analysis of the SABER-FISH dataset, where each ZT is analyzed separately to get $\sigma_{\text{bio}}$ and $\sigma_{\text{tech}}$ estimates at each time point?
+Given that this is the main dataset with direct experimental validation of the $\sigma_{\text{bio}}$ estimates, the analysis of this data and the limitations should be discussed more carefully.}
+
+\response
+
+\subsubsection*{R2.3b}
+
+\reviewer{The aggregation requirements of the method as well as all the simulations the authors have performed (Fig.~Reb~3A and 3B) seem to require one ground truth $\sigma_{\text{bio}}$ for the entire population of cells across the different ZT time points.
+However, this requirement seems directly in conflict with the SABER-FISH data, where $\sigma_{\text{bio}}$ increases with time post Dexamethasone synchronization.
+Therefore, the authors need to give a clear justification for applying their method to this dataset.
+If this is only a very approximate and empirical application of the method, the authors should accordingly tone down their claims of discovering increasing desynchrony and using this dataset as a strong validation of their method.}
+
+\response
+
+\subsubsection*{R2.3c}
+
+\reviewer{All simulations in the manuscript appear to hold $\sigma_{\text{bio}}$ to one fixed number across ZT time points, which is why the aggregation procedure seems to work via some cancellations.
+But if the $\sigma_{\text{bio}}$ per ZT changes, as is the case with the SABER-FISH data, wouldn't this fundamentally create issues in recovering the right $\sigma_{\text{bio}}$ estimates?
+Aggregation here would probably recover some sort of average of the individual $\sigma_{\text{bio}}$'s, right?
+Therefore in order to claim that scRitmo can extract meaningful increase of desynchrony over time, the authors should at least provide simulations where ground truth $\sigma_{\text{bio}}$ increases across ZTs within a single simulation.
+This simulation should then be analyzed with scRitmo and the results benchmarked for accuracy.}
+
+\response
+
+\subsubsection*{R2.3d}
+
+\reviewer{The equations for the aggregation and their corresponding description, both in the main text and response, are quite confusing because key quantities have been vaguely defined.
+What exactly do the words ``condition'' and ``batch'' mean here?
+What does the term $\sigma_b$ refer to in Eq.~16 of the revised main text?
+None of these have been defined.}
+
+\response
+
+% ------------------------------------------------------------------ R2.4
+\subsection*{R2.4 --- Aggregation with few ZT samples}
+
+\reviewer{The authors also comment that the aggregation procedure creates a requirement of sufficient ZT samples across 24 hours.
+In their simulations, they use 12 and 8 ZT samples, which is greater than the number of samples one would get from typical scRNA-seq datasets.
+For example, the Auerbach et al paper which the authors analyze, had only 4 samples spaced 6 hours apart.
+To better understand the limits of the aggregation procedure, the authors should demonstrate what happens in such limited datasets --- would accurate estimates of a population $\sigma_{\text{bio}}$ still be possible if there are just 4 samples?}
+
+\response
+
+% ------------------------------------------------------------------ R2.5
+\subsection*{R2.5 --- Identical mRNA and protein oscillations in the FLASH-seq data}
+
+\reviewer{In the application of the method to phase inference in asynchronized FLASH-seq data, I appreciate the new results presented and agree that they provide more evidence that biologically meaningful oscillations are being reconstructed.
+However, I'm still puzzled by the fact that the mRNA and protein oscillations look identical, and not phase shifted at all.
+The protein oscillation peak should be delayed by 2--4 hours as per a vast body of prior literature, which is not reflected in the results here.
+How does one interpret this?
+Does this suggest that in fact there are significant errors being made in phase assignment to the single cells?
+If so, I would recommend discussing this in the Main Text and also toning down the statement ``The inferred phase accurately reconstructed the oscillation of both the endogenous (Rev-Erb$\alpha$) mRNA level and the Rev-Erb$\alpha$-Venus protein fluorescence'', since the meaning of ``accurately'' cannot really be quantitatively established in this setting.}
+
+\response
+
+% ------------------------------------------------------------------ R2.6
+\subsection*{R2.6 --- Strength of the $\sigma_u$ claims}
+
+\reviewer{In the main text the authors say ``Across all tissues, cells with higher posterior uncertainty $\sigma_u$ showed larger phase errors than cells with lower $\sigma_u$ (Fig.~S3C, E, F), consistent with the per-cell correlation between $\sigma_u$ and phase error''.
+In the Discussion they say ``The posterior uncertainty $\sigma_u$ consistently predicts inference quality across simulations and diverse biological datasets, enabling principled quality control without external time labels.''
+However, in the light of the new quantification of correlations between $\sigma_u$ and error (ranging from 0.08 to 0.35 in Fig.~Reb~10A), these statements seem quite disproportionate.
+Even the highest of these correlation values at 0.35 is weak at best, and it is also unclear whether any of these would pass statistical tests of significance.
+The authors should therefore report these magnitudes along with results from statistical tests in the Main text, and statements such as those above should be tempered accordingly.}
+
+\response

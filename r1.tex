@@ -1,0 +1,53 @@
+% !TeX root = main.tex
+\section*{Reviewer 1}
+
+\noindent\textit{Overall assessment.} The reviewer is satisfied with the revision and recommends acceptance subject to minor corrections. The four points below are corrections and clarifications to existing text.
+
+\bigskip
+
+% ------------------------------------------------------------------ R1.1
+\subsection*{R1.1 --- Phase at which the Twin-Dataset is constructed}
+
+\reviewer{The phase at which the Twin-Dataset is constructed is never stated.
+The Methods define the twin as a synthetic dataset reproducing the per-cell library sizes and sequencing depth of the data under study, in which every cell shares the same circadian phase, and Eq.~(15) then subtracts the resulting $\sigma_{\text{technical}}$ at ``the group's sequencing depth''.
+Which phase the cells are placed at is not specified anywhere.
+This is not a detail: the paper itself shows $\sigma_{\text{technical}}$ varying roughly two-fold around the cycle (Fig.~S1F), so the choice materially determines every reported $\sigma_{\text{bio}}$.
+The response to my earlier point makes clear that the twin sits at the phase of the group it mirrors, and that this is precisely what protects the estimator from the phase-dependence concern I raised --- but a reader of the manuscript alone cannot reconstruct the central estimator.
+One sentence in the Twin-Dataset paragraph would close this.}
+
+\response
+
+% ------------------------------------------------------------------ R1.2
+\subsection*{R1.2 --- Derivation of the period spread}
+
+\reviewer{Two problems in the derivation of the period spread.
+The Methods state that fixed period heterogeneity and within-cycle stochastic phase fluctuations ``both produce a linearly growing cSTD, so they cannot be separated from a slope alone''.
+Diffusive phase accumulation gives a variance linear in time and therefore a cSTD growing as the square root of time, whereas period heterogeneity gives a cSTD linear in time; the two have different time dependence.
+The two references cited in that same sentence treat the contributions as distinguishable in principle.
+Please clarify.}
+
+\response
+
+% ------------------------------------------------------------------ R1.3
+\subsection*{R1.3 --- Explanation of the phase dependence of $\sigma_{\text{technical}}$}
+
+\reviewer{The explanation offered for the phase-dependence of $\sigma_{\text{technical}}$ does not match the periodicity reported.
+The Results attribute the variation of $\sigma_{\text{technical}}$ across the cycle to ``the non-uniform distribution of peak phases across the rhythmic gene set'', which is a once-per-cycle effect.
+Yet the SABER-FISH paragraph describes the modulation recovered in real data as 12h-periodic, and Fig.~S1F shows two maxima per cycle.
+The dominant mechanism --- that a small phase error perturbs predicted expression in proportion to the local steepness of the cosine, which is flat at peak and at trough and steepest between them, giving two maxima per cycle --- is stated clearly in a footnote of the response and appears nowhere in the manuscript.
+Uneven peak phases account only for the weaker once-per-cycle component.
+Please move the correct explanation into the Results; it is two sentences, and it matters because this modulation is what makes the per-time-point $\sigma_{\text{bio}}$ values uneven, which the same paragraph goes on to discuss.}
+
+\response
+
+% ------------------------------------------------------------------ R1.4
+\subsection*{R1.4 --- Supplementary tables and reproducibility}
+
+\reviewer{Supplementary tables and reproducibility.
+Tables S1, S2 and S3 are cited in the main text --- the Extended-Set gene parameters, the per-cell-type and per-time-point variance components, and the Drosophila-Set parameters respectively --- but are not present in the supplementary file supplied to me.
+Please confirm they ship with the paper rather than only with the code repository; Table S2 in particular is the item I wanted to see and is the one a reader will want alongside Fig.~3J.
+On the code itself, the position is now satisfactory in substance: both repositories are public and the preprocessed data are deposited.
+I can think of one potentially useful addition, which is the lightweight cell bootstrap that the authors describe as running in seconds from the deposited per-cell phases.
+I think this would be a very useful artefact in the repository if shipped as a standalone script.}
+
+\response

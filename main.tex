@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+
+
+% Let pdflatex render the few raw unicode math/greek glyphs that creep into the
+% prose, instead of crashing the build. Add new ones here as needed.
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}   % ≈
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}       % ±
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}        % ²
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}    % α
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}     % β
+\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}    % δ
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}    % κ
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}    % σ
+\DeclareUnicodeCharacter{03C6}{\ensuremath{\varphi}}   % φ
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}    % θ
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}    % Δ
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}      % ≤
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}      % ≥
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}    % ×
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}} % →
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\usepackage{xspace}
+\newcommand{\clockref}{\textit{Clock-Reference}\xspace}
+\newcommand{\extset}{\textit{Extended-Set}\xspace}
+\newcommand{\drososet}{\textit{Drosophila-Set}\xspace}
+\newcommand{\sigmaU}{\ensuremath{\sigma_u}\xspace}
+\newcommand{\scritmo}{\textit{scRitmo}\xspace}
+\newcommand{\sigmabio}{$\sigma_\text{bio}$\xspace}
+\newcommand{\sigmatech}{$\sigma_\text{technical}$\xspace}
+\newcommand{\sigmadata}{$\sigma_\text{data}$\xspace}
+
+% --- Figure cross-references ---------------------------------------------
+% Rebuttal's own figures: \rebfig{label} -> "Fig. Reb N";
+% optional first arg is the panel, e.g. \rebfig[A]{fig:decomposition} -> "Fig. Reb 2A".
+% The \ref keeps numbering automatic, so reordering figures never breaks the text.
+\newcommand{\rebfig}[2][]{Fig.~Reb~\ref{#2}#1}
+% Main-paper figures: their numbers live in the paper repo (no label here), so
+% \mainfig{2C} -> "Fig. 2C of the main text", \mainfig{S1E} -> "Fig. S1E of the main text".
+\newcommand{\mainfig}[1]{Fig.~#1 of the main text}
+% Main-paper equations not reproduced in the rebuttal: \maineq{3} -> "Eq. 3 of the main text".
+\newcommand{\maineq}[1]{Eq.~#1 of the main text}
+
+
+% --- Formatting helpers --------------------------------------------------
+% Reviewer comment, rendered in italics
+\newcommand{\reviewer}[1]{{\itshape #1}\par\medskip}
+% Our response label
+\newcommand{\response}{\par\noindent\textbf{Response.}\ }
+% Sub-heading inside a response: small caps, not bold, on its own line.
+% Used with \paragraph{...} at the start of each block of a long answer.
+\renewcommand{\paragraph}[1]{%
+  \par\smallskip
+  \noindent\textsc{\small #1}\par\nopagebreak
+}
+% Rebuttal figures are labelled "Figure Reb N"
+\renewcommand{\figurename}{Figure Reb}
+
+\title{Response to Reviewers, Round 2\\[4pt]
+\large Inferring circadian phases and quantifying biological desynchrony
+across single-cell transcriptomes}
+\author{Salati \textit{et al.}}
+\date{September 2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent We thank both reviewers for their second round of comments.
+Below we reproduce each comment (in \textit{italics}) followed by our response.
+
+\medskip
+\noindent\textit{A note on numbering.} % TODO: fill in once the revised numbering is fixed.
+Figure, panel and equation references in our responses are to the revised manuscript
+unless stated otherwise. References of the form Fig.~Reb~N point to figures of this document or of the first round response.
+
+\bigskip
+\noindent\textbf{Summary of main changes.}
+
+\begin{itemize}
+\item % TODO
+\end{itemize}
+
+\bigskip
+\hrule
+\bigskip
+
+% Figure commands are defined in figures.tex, then placed inline next to the relevant reply.
+\input{figures.tex}
+
+\input{r1.tex}
+\newpage
+\input{r2.tex}
+
+\bigskip
+\hrule
+\bigskip
+
+\bibliographystyle{unsrt}
+\bibliography{ref}
+
+\end{document}

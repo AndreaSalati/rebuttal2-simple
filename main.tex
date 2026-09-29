@@ -40,6 +40,23 @@
 \newcommand{\sigmatech}{$\sigma_\text{technical}$\xspace}
 \newcommand{\sigmadata}{$\sigma_\text{data}$\xspace}
 
+% --- Math notation for the variance decomposition (R2.1 to R2.3) ---------
+% Same symbols as the Obsidian notes (variance_decomposition_two_shells.md).
+% Group b = one replicate at one ZT. theta = true phase, \that = inferred phase.
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\that}{\hat\theta}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\sbio}{\ensuremath{\sigma_{\text{bio}}}\xspace}          % math safe \sigmabio
+\newcommand{\sbiob}{\ensuremath{\sigma_{\text{bio},b}}\xspace}       % biological spread of group b
+\newcommand{\Tb}{T_b}                                                % exact technical term of group b
+\newcommand{\Bb}{B_b}                                                % exact biological term of group b
+\newcommand{\Vb}{V_b}                                                % observed variance of inferred phases, group b
+\newcommand{\pb}{p_b}                                                % distribution of true phases in group b
+\newcommand{\mub}{\mu_b}                                             % mean true phase of group b
+\newcommand{\fc}{f_{\circ}}   % technical variance on the circle, -2 ln r
+\newcommand{\Rbar}{\bar R_b}                                         % mean resultant length of inferred phases, group b
+
 % --- Figure cross-references ---------------------------------------------
 % Rebuttal's own figures: \rebfig{label} -> "Fig. Reb N";
 % optional first arg is the panel, e.g. \rebfig[A]{fig:decomposition} -> "Fig. Reb 2A".

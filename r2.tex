@@ -81,7 +81,11 @@ Here $\Rbar$ and $n_b$ come from the data, the $c_j$ from the grid, and $\mub$ i
 
 \emph{What is removed.} A1 disappears because Eq.~\eqref{eq:rhobar} averages $\rho$ over the whole distribution $\pb$. A2 disappears because $\rho$ contains the direction $m(\theta)$, so the bias is inside the prediction. The circular correction disappears because Eq.~\eqref{eq:vector-equation} compares mean vectors and does not add variances, and the finite $n_b$ term is included. A3 does not arise as a wrong placement, since $\mub$ is the known ZT. What remains is an offset between the phase origin of the fitted model and ZT 0 (0.2 to 0.55 h in our simulation), which affects both methods.
 
-\emph{Test in simulation.} We simulated 15 clock genes and 6 groups of 1000 cells at phases 4 h apart, with true spread 1.0 h or 2.4 h (von Mises) and 5 replicates of the whole experiment. The data are generated from a perturbed copy of the fitted gene profiles, so the fitted model is not the generating model. The oracle is a reference, not an estimator: it re-simulates each group at the true phases of its cells with the fitted model, so it has no A1, A2 or A3 error. \rebfig{fig:vector-vs-twin} compares the two estimators and the oracle at 3k, 10k and 30k UMI per cell. % TODO: add the figure (RMSE of sigma_bio per group, Twin vs vector vs oracle, from vector_deconvolution_estimator.md Section 8) and define fig:vector-vs-twin in figures.tex.
+\emph{Test in simulation.} We simulated 15 clock genes and 6 groups of 1000 cells at phases 4 h apart, at 3k, 10k and 30k UMI per cell, with a true spread of zero (all cells of a group at the same phase), 1.0 h or about 2.5 h (von Mises), and 5 replicates of the whole experiment. The data are generated from a perturbed copy of the fitted gene profiles, so the fitted model is not the generating model. The truth of a group is the circular standard deviation of the true phases of its cells. \rebfig{fig:vector-vs-twin} shows the absolute error of the Twin method and of the vector form for each group. When the estimate of a group falls below the technical value, it is counted as zero for both methods.
+
+With a true spread of about 2.5 h, the mean absolute error of the vector form is 0.46 h against 0.60 h for the Twin method at 3k, 0.17 against 0.24 h at 10k, and 0.07 against 0.15 h at 30k. With a spread of 1.0 h the difference is smaller (0.51 against 0.62 h, 0.26 against 0.28 h, and 0.14 against 0.16 h). With no spread the two are about equal (0.50 against 0.54 h, 0.26 against 0.25 h, and 0.24 against 0.23 h), and at 30k the Twin method is slightly better. In that case more than half of the groups are below the technical value and get an estimate of zero, so the median error is close to zero for both. For both methods the error falls as the depth goes up.
+
+The oracle used in R2.3b and R2.3c is a reference, not an estimator: it re-simulates each group at the true phases of its cells with the fitted model, so it has no A1, A2 or A3 error.
 
 \paragraph{Assumptions that remain.}
 The wrapped normal shape of $\pb$; a fitted model close to the data generating process; one library size distribution shared by all groups (otherwise we build one grid per group); independent cells; and a grid large enough that its own sampling noise is small next to that of the data. We have not yet tested the vector form when $\sbiob$ changes from group to group, as in the SABER-FISH data. We do this in R2.3c.
@@ -89,6 +93,8 @@ The wrapped normal shape of $\pb$; a fitted model close to the data generating p
 % TODO: fill in with the final manuscript text once the manuscript is updated.
 \paragraph{Changes to the manuscript.}
 The Methods now define the conditioning variable $\theta$, the split in Eq.~\eqref{eq:ltv} and the circular form in Eq.~\eqref{eq:total-expectation}. They state when Eq.~14 is exact, and they describe the vector form and its comparison with the Twin method.
+
+\figEstimatorAbsError
 
 % ------------------------------------------------------------------ R2.2
 \subsection*{R2.2}

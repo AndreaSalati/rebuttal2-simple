@@ -15,6 +15,23 @@
 % }
 % =========================================================================
 
+% ------------------------------------------------------------------ R2.1
+\newcommand{\figEstimatorAbsError}{%
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=0.95\linewidth,keepaspectratio]{figures/FIGURE_estimator_abs_error.pdf}
+
+  {\small
+  \captionof{figure}{\textbf{Absolute error of $\hat\sigma_{\text{bio}}$ of a group in simulation, Twin method and vector form.}
+  15 clock genes, 6 groups of 1000 cells at phases 4 h apart, 5 replicates of the experiment (30 groups per box). Columns: no desynchrony, low and high, with the true spread in the panel titles. The x axis is the number of UMI per cell. Error: absolute value of the estimate minus the circular standard deviation of the true phases of the cells of the group. Boxes: median and quartiles, whiskers to 1.5 times the interquartile range. Dots: single groups. A group whose estimate falls below the technical value is counted as zero for both methods.}
+  \label{fig:vector-vs-twin}
+  }
+  \end{minipage}
+\end{figure}
+}
+
 % ------------------------------------------------------------------ R2.3b
 \newcommand{\figRampFish}{%
 \begin{figure}[H]

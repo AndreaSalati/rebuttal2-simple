@@ -34,6 +34,34 @@
 \end{figure}
 }
 
+% R2.1, real data. Panels copied from context_repo/plot/FIGURES/vector_form/*_compare.pdf
+% (nb/_FIGURES_marimo/FIGURE_VECTOR_PANELS.py, sections B, D, E).
+\newcommand{\figVectorReal}{%
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{\linewidth}
+  \centering
+  \begin{tabular}{@{}ll@{}}
+  \textbf{A} & \textbf{B} \\
+  \includegraphics[width=0.48\linewidth,height=0.28\textheight,keepaspectratio]{figures/FIGURE_vector_real_fish_G.pdf} &
+  \includegraphics[width=0.48\linewidth,height=0.28\textheight,keepaspectratio]{figures/FIGURE_vector_real_fish_H.pdf} \\
+  \textbf{C} & \textbf{D} \\
+  \includegraphics[width=0.48\linewidth,height=0.28\textheight,keepaspectratio]{figures/FIGURE_vector_real_mammal_J.pdf} &
+  \includegraphics[width=0.48\linewidth,height=0.28\textheight,keepaspectratio]{figures/FIGURE_vector_real_droso_F.pdf}
+  \end{tabular}
+
+  {\small
+  \captionof{figure}{\textbf{Twin method and vector form on the real data.}
+  \textbf{(A)} SABER-FISH, as in \mainfig{2G}. Grey: $\sigma_{\text{data}}$. Blue: $\sigma_{\text{bio}}$ with the Twin method. Orange: $\sigma_{\text{bio}}$ with the vector form. Bands: 95\% intervals of a bootstrap over the cells (2000 draws, technical part held fixed). Dashed lines: lines fitted to the 11 time points after the first one (open markers, left out of the fit), slope not allowed to be negative.
+  \textbf{(B)} Distribution of the period obtained from the slopes in A, as in \mainfig{2H}. Shaded: mean period plus or minus $\sigma_T$.
+  \textbf{(C)} Mouse, \extset, as in \mainfig{3J}. Single value of $\sigma_{\text{bio}}$ over the samples of each cell type (\maineq{16}). Colors: organ. Plain bars: Twin method. Hatched bars: vector form. Error bars: standard error.
+  \textbf{(D)} \textit{Drosophila}, as in \mainfig{4F}. Single value of $\sigma_{\text{bio}}$ per cluster. Blue: Twin method. Orange: vector form. Plain bars: light dark cycle (LD). Hatched bars: constant darkness (DD). Error bars: standard error.}
+  \label{fig:vector-real}
+  }
+  \end{minipage}
+\end{figure}
+}
+
 % ------------------------------------------------------------------ R2.3b
 \newcommand{\figRampFish}{%
 \begin{figure}[H]

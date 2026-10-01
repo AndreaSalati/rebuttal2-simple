@@ -21,11 +21,13 @@
   \centering
   \begin{minipage}{\linewidth}
   \centering
-  \includegraphics[width=0.95\linewidth,keepaspectratio]{figures/FIGURE_estimator_abs_error.pdf}
+  \includegraphics[width=0.85\linewidth,height=0.6\textheight,keepaspectratio]{figures/FIGURE_estimator_abs_error.pdf}
 
   {\small
-  \captionof{figure}{\textbf{Absolute error of $\hat\sigma_{\text{bio}}$ of a group in simulation, Twin method and vector form.}
-  15 clock genes, 6 groups of 1000 cells at phases 4 h apart, 5 replicates of the experiment (30 groups per box). Columns: no desynchrony, low and high, with the true spread in the panel titles. The x axis is the number of UMI per cell. Error: absolute value of the estimate minus the circular standard deviation of the true phases of the cells of the group. Boxes: median and quartiles, whiskers to 1.5 times the interquartile range. Dots: single groups. A group whose estimate falls below the technical value is counted as zero for both methods.}
+  \captionof{figure}{\textbf{Absolute error of $\hat\sigma_{\text{bio}}$ in simulation, Twin method and vector form.}
+  15 clock genes, 6 groups of 1000 cells at phases 4 h apart, 5 replicates of the experiment. Columns: low and high desynchrony, with the mean true spread in the panel titles. The x axis is the number of UMI per cell. A group whose estimate falls below the technical value is counted as zero for both methods.
+  \textbf{(A)} Error of each group: absolute value of the estimate minus the circular standard deviation of the true phases of the cells of the group, log scale. Boxes: median and quartiles, whiskers to 1.5 times the interquartile range, 30 groups per box. Dots: single groups.
+  \textbf{(B)} Mean absolute error of a single group (light bars, 30 groups) and of the single value over the 6 groups of one replicate (dark bars, \maineq{16}, 5 replicates), for the Twin method (blue) and the vector form (orange). The truth of the single value is the same average taken over the true values of the groups.}
   \label{fig:vector-vs-twin}
   }
   \end{minipage}

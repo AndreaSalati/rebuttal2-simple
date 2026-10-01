@@ -95,11 +95,12 @@ The oracle used in R2.3b and R2.3c is a reference, not an estimator: it re-simul
 The wrapped normal shape of $\pb$; a fitted model close to the data generating process; one library size distribution shared by all groups (otherwise we build one grid per group); independent cells; and a grid large enough that its own sampling noise is small next to that of the data. We have not yet tested the vector form when $\sbiob$ changes from group to group, as in the SABER-FISH data. We do this in R2.3c.
 
 \paragraph{Which estimator the paper uses.}
-The decomposition is the same for both methods, namely Eq.~\eqref{eq:ltv} with $\theta$ as the conditioning variable. The two methods differ only in how they estimate the technical part. The Twin method evaluates it at one phase. The vector form averages it over $\pb$ and keeps the bias inside the prediction. The claims of the paper rest on the single value over the groups (\maineq{16}) and on slopes over time points. In simulation, from 10k upward, the two methods agree there. The error of the single value is 0.08 h or less for both, and the slopes over time points lead to the same conclusion (R2.3b, R2.3c). We therefore keep the Twin method as the main estimator, so the results that both reviewers checked in the first round do not change. The vector form is better for a single group and at low depth. At 3k the error of the single value is 0.24 against 0.35 h (spread 2.5 h) and 0.26 against 0.39 h (spread 1.0 h), and for a single group at a spread of 2.5 h it is 0.46 against 0.60 h. We recommend the vector form in those cases. It is in the scRitmo package as an option and described in the Supplement.
+The decomposition is the same for both methods, namely Eq.~\eqref{eq:ltv} with $\theta$ as the conditioning variable. The two methods differ only in how they estimate the technical part. The Twin method evaluates it at one phase. The vector form averages it over $\pb$ and keeps the bias inside the prediction. The claims of the paper rest on the single value over the groups (\maineq{16}) and on slopes over time points. In simulation, from 10k upward, the two methods agree there. The error of the single value is 0.08 h or less for both, and the slopes over time points lead to the same conclusion (R2.3b, R2.3c). We therefore keep the Twin method as the main estimator, so the results that both reviewers checked in the first round do not change. The vector form is better for a single group and at low depth. At 3k the error of the single value is 0.24 against 0.35 h (spread 2.5 h) and 0.26 against 0.39 h (spread 1.0 h), and for a single group at a spread of 2.5 h it is 0.46 against 0.60 h. We recommend the vector form in those cases. It is in the scRitmo package as an option.
+% TODO: once the Supplement section exists, add: "and described in the Supplement".
 
-% TODO: fill in with the final manuscript text once the manuscript is updated.
-\paragraph{Changes to the manuscript.}
-The Methods now define the conditioning variable $\theta$, the split in Eq.~\eqref{eq:ltv} and the circular form in Eq.~\eqref{eq:total-expectation}. They state when Eq.~14 is exact, and they describe the vector form in one paragraph. The Supplement gives the vector form in full and its comparison with the Twin method. The Twin method stays the default.
+% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
+% \paragraph{Changes to the manuscript.}
+% The Methods now define the conditioning variable $\theta$, the split in Eq.~\eqref{eq:ltv} and the circular form in Eq.~\eqref{eq:total-expectation}. They state when Eq.~14 is exact, and they describe the vector form in one paragraph. The Supplement gives the vector form in full and its comparison with the Twin method. The Twin method stays the default.
 
 \figEstimatorAbsError
 
@@ -136,6 +137,7 @@ Therefore, the authors need to give a clear justification for applying their met
 If this is only a very approximate and empirical application of the method, the authors should accordingly tone down their claims of discovering increasing desynchrony and using this dataset as a strong validation of their method.}
 
 \response
+% TODO: "We now claim less" must match the manuscript. Check once the SABER-FISH Results are toned down.
 The reviewer is right that the single value over all time points (\maineq{16}) needs one $\sigma_{\text{bio}}$ to mean anything, and the SABER-FISH experiment does not have one. The simulations in our first response used one value by design, which is why we now ran a simulation with a $\sigma_{\text{bio}}$ that changes. The SABER-FISH analysis does not use the single value, and we tested what it does use on a simulated copy of the experiment (\rebfig{fig:ramp_fish}). In the simulation the increase of $\sigma_{\text{bio}}$ is recovered and the absolute values are too high. The real data scatter more than the simulation, and the real slope is about half as large when the first time point is kept in the fit. We now claim less.
 
 \paragraph{What the SABER-FISH analysis uses.}
@@ -155,14 +157,15 @@ The real estimates (\rebfig[D]{fig:ramp_fish}, 116 to 362 cells per time point) 
 On the real data the two methods agree on an upward trend, but they differ in how clearly it separates from a constant $\sigma_{\text{bio}}$. The slope of the line, with the first time point left out as in the paper, is 0.056 h per h for the Twin method and 0.042 for the vector form. The 95\% bootstrap intervals over cells are 0.030 to 0.074 and 0.021 to 0.066. With all 12 time points the slopes are 0.035 (0.016 to 0.045) and 0.021 (0.005 to 0.034), because the estimate at 10 h is high. The bootstrap does not fit the model again, so these intervals are too narrow. In the simulation a constant profile gave slopes of up to 0.026 for both methods. Only the Twin slope with the first time point left out lies clearly above that, since its interval starts at 0.030. The other three real slopes have intervals that reach down into the range of the constant profile. The two methods differ by 0.014 h per h, which is about one bootstrap standard deviation (0.010).
 
 \paragraph{What we claim now.}
+% TODO: "We no longer call this dataset a strong validation" must match the manuscript. Check once the Abstract, Results and Discussion are edited.
 The real estimates trend upward. In simulation, a straight increase of the size seen for the Twin method is recovered to within about 10\% when the first time point is left out, and a constant $\sigma_{\text{bio}}$ gives smaller slopes. The real data separate from the constant case clearly only for the Twin method with the first time point left out. With all 12 time points, or with the vector form, they do not. Read the values as a profile over time and not as hours of desynchrony, since in simulation they are too high by 0.4 to 0.5 h on average. Do not read single time points, or the difference between neighbouring ones. The size of the slope depends on the method and on the first time point, and the scatter of the real estimates is larger than the simulation can explain. We no longer call this dataset a strong validation.
 
 \paragraph{Limits of the simulation.}
 (i) The true profile is a straight line and has no scatter between time points, while the real one may not. (ii) The simulated time points sit exactly on a 24 h clock. In the real fit the mean inferred phase of a time point is up to 1.7 h away from such a clock, and we did not simulate that. (iii) The generator is the fitted model, so the real data can differ from it in ways the simulation does not cover. (iv) There are 10 replicates, so the standard deviations above are rough. (v) The vector form uses one grid, which is a set of simulated cells at 24 evenly spaced true phases with the cell areas of all time points. The version with one grid per time point gives slopes of $0.051$ and $0.054$ for the ramp (first time point left out, all 12), which are close.
 
-% TODO: fill in with the final manuscript text once the manuscript is updated.
-\paragraph{Changes to the manuscript.}
-The Results on the SABER-FISH data now say that the increase is read from the estimates at the individual time points, that the single value over all time points is not used for it, and that in simulation the estimated values are on average higher than the true ones. They report the slope for both methods, with and without the first time point, with the bootstrap intervals, and the scatter of the real estimates. The claim of validation is reduced to what is written above. This simulation is added to the Supplement.
+% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
+% \paragraph{Changes to the manuscript.}
+% The Results on the SABER-FISH data now say that the increase is read from the estimates at the individual time points, that the single value over all time points is not used for it, and that in simulation the estimated values are on average higher than the true ones. They report the slope for both methods, with and without the first time point, with the bootstrap intervals, and the scatter of the real estimates. The claim of validation is reduced to what is written above. This simulation is added to the Supplement.
 
 \figRampFish
 
@@ -188,9 +191,9 @@ For the ramp, the slope of a line fitted to the 12 estimates, divided by the tru
 \paragraph{Limits.}
 With a true $\sigma_{\text{bio}}$ of 0, the single value is too high at low depth: 1.4 to 1.7 h at 3k, 0.5 to 0.8 h at 10k, and $-0.1$ to 0.4 h at 30k. The Twin is placed at the mean of the inferred phases, which is shifted at low depth (R2.1), and the vector form sets negative estimates to zero. At 10k and below, a small $\sigma_{\text{bio}}$ is therefore not distinguished from none. In a one day design (ZT 0 to 22), where the ramp and the clock phase are the same axis, the slope ratios are lower (0.77 and 0.86 at 30k, 0.60 and 0.72 at 10k), the constant and cosine profiles give false slopes of up to 0.05 h per h at 10k (the true ramp slope is 0.11), and the vector form is 0.45 h off at 10k for the cosine peaking at ZT10. A rise of $\sigma_{\text{bio}}$ within a single day should be interpreted with care.
 
-% TODO: fill in with the final manuscript text once the manuscript is updated.
-\paragraph{Changes to the manuscript.}
-We state in the Methods that the pooled $\sigma_{\text{bio}}$ is a weighted average when $\sigma_{\text{bio}}$ changes across time points, and we add this simulation to the Supplement.
+% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
+% \paragraph{Changes to the manuscript.}
+% We state in the Methods that the pooled $\sigma_{\text{bio}}$ is a weighted average when $\sigma_{\text{bio}}$ changes across time points, and we add this simulation to the Supplement.
 
 \figRampRnaseq
 

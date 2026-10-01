@@ -6,12 +6,15 @@
 This appendix describes the vector form estimator summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 to A3 of the Twin method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="deconvolution", deconv\_form="vector")}.
 
 \paragraph{Starting point.}
+
 Instead of correcting the approximations A1 to A3 one by one, we start from the exact identity of R2.1, Eq.~\eqref{eq:total-expectation}. Its left side is what the data give (estimated by the mean $\bar z_b$ of $e^{\ii\that_c}$ over the cells, with $\Rbar = |\bar z_b|$). On the right, $\rho(\theta)$ is the technical part, which depends only on the model and the library sizes, and $\pb$ is the biological part, whose width is \sbiob. The identity needs no expansion, and no assumption that $r$ is constant or $m(\theta) = \theta$.
 
 \paragraph{Step 1, measure $\rho$ on a grid.}
+
 At each of $N = 24$ phases $\phi_k = 2\pi(k-1)/N$ (1 h apart) we simulate Twin cells (1000 per run, 5 runs pooled, so $M = 5000$), infer their phases and take the mean unit vector $\hat\rho_k = \frac{1}{M}\sum e^{\ii\that}$ over the $M$ cells at $\phi_k$. This is a plain mean, so $\E[\hat\rho_k] = \rho(\phi_k)$. We keep the complex value, because its direction holds the bias.
 
 \paragraph{Step 2, Fourier series.}
+
 Since $\rho$ is periodic,
 \begin{equation}
 \rho(\theta) = \sum_{j=-J}^{J} c_j\, e^{\ii j\theta},
@@ -23,6 +26,7 @@ c_j = \frac{1}{N}\sum_{k=1}^{N} \hat\rho_k\, e^{-\ii j\phi_k},
 where the term at $|j| = N/2$ is split in two halves, so that the series passes through every grid point.
 
 \paragraph{Step 3, average over the biological distribution.}
+
 We assume $\pb$ is a wrapped normal with center $\mub$ and width $\sigma$ in radians, where $\sigma$ is the trial value of $\sbiob$. For harmonic $j$ (period $24/j$ h),
 \begin{equation}
 \E_{\theta \sim \pb}\big[e^{\ii j\theta}\big] = \kappa_j(\sigma)\, e^{\ii j\mub},
@@ -38,6 +42,7 @@ The factor $\kappa_j$ lies between 0 and 1. A distribution that is wide compared
 The grid gives all the $c_j$, so this is a known function of $\sigma$. Under the conditions where Eq.~14 is exact ($r$ constant, $m(\theta) = \theta$, and many cells), it reduces to Eq.~14.
 
 \paragraph{Step 4, one equation with one unknown.}
+
 For independent cells, $\E[\Rbar^2] = |\bar\rho_b|^2 + (1 - |\bar\rho_b|^2)/n_b$, where the second term comes from the $n_b$ products of a cell with itself. The estimate $\hat\sigma_{\text{bio},b}$ is the value of $\sigma$ that solves
 \begin{equation}
 |\bar\rho_b(\sigma)|^2 + \frac{1 - |\bar\rho_b(\sigma)|^2}{n_b} = \Rbar^2 .
@@ -46,7 +51,9 @@ For independent cells, $\E[\Rbar^2] = |\bar\rho_b|^2 + (1 - |\bar\rho_b|^2)/n_b$
 Here $\Rbar$ and $n_b$ come from the data, the $c_j$ from the grid, and $\mub$ is the ZT of the group in the phase frame of the fitted model, so only $\sigma$ is unknown. We search $\sigma$ over $[0,\pi]$ and accept a root only if it is unique. If the data are tighter than the prediction at $\sigma = 0$ we set the estimate to zero. If no unique root exists, the group has no estimate. The estimand is $\sbiob$, the spread of $\theta$, and not $\Bb$.
 
 \paragraph{What is removed.}
+
 A1 disappears because Eq.~\eqref{eq:rhobar} averages $\rho$ over the whole distribution $\pb$. A2 disappears because $\rho$ contains the direction $m(\theta)$, so the bias is inside the prediction. The circular correction disappears because Eq.~\eqref{eq:vector-equation} compares mean vectors and does not add variances, and the finite $n_b$ term is included. A3 does not arise as a wrong placement, since $\mub$ is the known ZT. What remains is an offset between the phase origin of the fitted model and ZT 0 (0.2 to 0.55 h in our simulation), which affects both methods.
 
 \paragraph{Assumptions that remain.}
+
 The wrapped normal shape of $\pb$; a fitted model close to the data generating process; one library size distribution shared by all groups (otherwise we build one grid per group); independent cells; and a grid large enough that its own sampling noise is small next to that of the data. The case where $\sbiob$ changes from group to group, as in the SABER-FISH data, is tested in R2.3b and R2.3c.

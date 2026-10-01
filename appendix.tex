@@ -3,11 +3,11 @@
 \newpage
 \section*{Appendix A: the vector form}
 
-This appendix describes the vector form estimator summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 to A3 of the Twin method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="deconvolution", deconv\_form="vector")}.
+This appendix describes the vector form estimator summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 and A2 of the Twin method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="deconvolution", deconv\_form="vector")}.
 
 \paragraph{Starting point.}
 
-Instead of correcting the approximations A1 to A3 one by one, we start from the exact identity of R2.1, Eq.~\eqref{eq:total-expectation}. Its left side is what the data give (estimated by the mean $\bar z_b$ of $e^{\ii\that_c}$ over the cells, with $\Rbar = |\bar z_b|$). On the right, $\rho(\theta)$ is the technical part, which depends only on the model and the library sizes, and $\pb$ is the biological part, whose width is \sbiob. The identity needs no expansion, and no assumption that $r$ is constant or $m(\theta) = \theta$.
+Instead of correcting the approximations A1 and A2 one by one, we start from the exact identity of R2.1, Eq.~\eqref{eq:total-expectation}. Its left side is what the data give (estimated by the mean $\bar z_b$ of $e^{\ii\that_c}$ over the cells, with $\Rbar = |\bar z_b|$). On the right, $\rho(\theta)$ is the technical part, which depends only on the model and the library sizes, and $\pb$ is the biological part, whose width is \sbiob. The identity needs no expansion, and no assumption that $r$ is constant or $m(\theta) = \theta$.
 
 \paragraph{Step 1, measure $\rho$ on a grid.}
 
@@ -52,7 +52,7 @@ Here $\Rbar$ and $n_b$ come from the data, the $c_j$ from the grid, and $\mub$ i
 
 \paragraph{What is removed.}
 
-A1 disappears because Eq.~\eqref{eq:rhobar} averages $\rho$ over the whole distribution $\pb$. A2 disappears because $\rho$ contains the direction $m(\theta)$, so the bias is inside the prediction. The circular correction disappears because Eq.~\eqref{eq:vector-equation} compares mean vectors and does not add variances, and the finite $n_b$ term is included. A3 does not arise as a wrong placement, since $\mub$ is the known ZT. What remains is an offset between the phase origin of the fitted model and ZT 0 (0.2 to 0.55 h in our simulation), which affects both methods.
+A1 disappears because Eq.~\eqref{eq:rhobar} averages $\rho$ over the whole distribution $\pb$. A2 disappears because $\rho$ contains the direction $m(\theta)$, so the bias is inside the prediction. The circular correction disappears because Eq.~\eqref{eq:vector-equation} compares mean vectors and does not add variances, and the finite $n_b$ term is included. What remains is an offset between the phase origin of the fitted model and ZT 0 (0.2 to 0.55 h in our simulation), which affects both methods.
 
 \paragraph{Assumptions that remain.}
 

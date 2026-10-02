@@ -76,8 +76,9 @@
 \newcommand{\response}{\par\noindent\textbf{Response.}\ }
 % Sub-heading inside a response: small caps, not bold, on its own line.
 % Used with \paragraph{...} at the start of each block of a long answer.
+% A full empty line (\baselineskip) is left before every heading, on purpose.
 \renewcommand{\paragraph}[1]{%
-  \par\smallskip
+  \par\vspace{\baselineskip}
   \noindent\textsc{\small #1}\par\nopagebreak 
 }
 % Rebuttal figures are labelled "Figure Reb N"

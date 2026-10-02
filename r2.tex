@@ -65,21 +65,17 @@ The oracle used in R2.3c is a reference, not an estimator: it re-simulates each 
 
 \paragraph{The average over groups.}
 
-The decomposition is defined and estimated for each group $b$ (one replicate at one ZT). The single value over groups, \maineq{16}, $\sqrt{\sum_b n_b \hat\sigma_{\text{bio},b}^2 / \sum_b n_b}$, is an extra step and not part of the definition. It estimates one $\sigma_{\text{bio}}$ only if all groups share one. This is not the case in the SABER-FISH experiment, where $\sigma_{\text{bio}}$ rises with time, so there we do not use it and read the estimates per time point (R2.3c). When $\sigma_{\text{bio}}$ changes across groups, the single value is their average weighted by the number of cells, and it hides the change (R2.3c). Our first round statement that $\sigma_{\text{bio}}$ is ``a property of a population sampled across the cycle, not of an individual ZT'' was too strong.
+The decomposition is defined and estimated for each group $b$ (one replicate at one ZT). The single value over groups, \maineq{16}, $\sqrt{\sum_b n_b \hat\sigma_{\text{bio},b}^2 / \sum_b n_b}$, is an extra step and not part of the definition. It estimates one $\sigma_{\text{bio}}$ only if all groups share one. This is not the case in the SABER-FISH experiment, where $\sigma_{\text{bio}}$ rises with time, so there we do not use it and use the estimates per time point (R2.3c). When $\sigma_{\text{bio}}$ changes across groups, the single value is their average weighted by the number of cells, and it hides the change (R2.3c). Our first round statement that $\sigma_{\text{bio}}$ is ``a property of a population sampled across the cycle, not of an individual ZT'' was too strong.
 
-% it's reppetitive
-We do not need the average to get a usable estimate: one group is enough from about 10k UMI per cell, with an error of 0.24 h for the Twin method and 0.17 h for the vector form at a spread of 2.5 h (\rebfig[A]{fig:vector-vs-twin}). 
-%  this is ok
-When $\sigma_{\text{bio}}$ is the same in all groups around the clock, the average reduces the error on $\sigma_{\text{bio}}$, by a factor of 1.6 to 6 in the simulation above (\rebfig[B]{fig:vector-vs-twin}). 
+A single group already gives a usable estimate from about 10k UMI per cell (\rebfig[A]{fig:vector-vs-twin}). When $\sigma_{\text{bio}}$ is the same in all groups around the clock, the average reduces the error on $\sigma_{\text{bio}}$, by a factor of 1.6 to 6 in the simulation above (\rebfig[B]{fig:vector-vs-twin}).
 
-Part of this gain is the plain averaging of the noise of single groups. The other part is that it cancels part of the Twin error $\Delta_b$. Take time points evenly spaced over the cycle, with the same $\sbiob$, depth and number of cells in every group. The main parts of A1 and A2 change sign around the cycle: $f$ curves upward at some phases and downward at others, and the cells are squeezed at some phases and spread apart at others. Over a whole cycle these parts average to zero, so they cancel. 
-% unclear
-With $N$ evenly spaced time points the cancellation is exact except for the parts of $f$ and of the bias that repeat a multiple of $N$ times per day. 
+Part of this gain is the plain averaging of the noise of single groups. The rest comes from the Twin error $\Delta_b$. With evenly spaced time points and the same $\sbiob$, depth and number of cells in every group, the main parts of A1 ($f$ taken at one phase) and A2 (bias left out) change sign around the cycle ($f$ curves upward at some phases and downward at others, and the cells are squeezed at some phases and spread apart at others), so they cancel in the average. The cancellation removes every daily rhythm of $f$ and of the bias except those with a period of $24/N$ h or a whole fraction of it, where $N$ is the number of time points. With 6 time points 4 h apart, only rhythms with a period of 4 h, 2 h and shorter remain, and these are small.
 
 The other parts do not cancel: the small circle term of A1 keeps one sign, and so does a smaller part of A2 that grows with the square of the squeezing. So a small error is left, and it is included in the error of the single value in the simulation above. With few time points the cancellation is weaker (R2.4).
 
+When all groups share one $\sigma_{\text{bio}}$, there is also a more direct way to combine them than averaging the estimates. The equation of each group follows from the law of total expectation, and so does their sum over groups. We solve this sum numerically for a single $\sigma_{\text{bio}}$ (Appendix A).
+
 \paragraph{Which estimator the paper uses.}
-% ok
 The decomposition is the same for both methods, namely Eq.~\eqref{eq:ltv} with $\theta$ as the conditioning variable. The two methods differ only in how they estimate the technical part. The Twin method evaluates it at one phase. The vector form averages it over $\pb$ and keeps the bias inside the prediction. 
 
 In simulation, from 10k upward, the two methods agree there. The error of the single value is 0.08 h or less for both, and the slopes over time points lead to the same conclusion (R2.3c). 
@@ -89,9 +85,9 @@ On the real data the two methods also agree (\rebfig{fig:vector-real}). For the 
 Both methods use the same fitted model and the same simulated cells. So their agreement shows that the approximations of the Twin method do not drive these results. 
 
 It does not test the fit itself, which is the larger source of error (R2.3c). We therefore keep the Twin method as the main estimator, so the results that both reviewers checked in the first round do not change. 
-% shorten 50%
+
 The vector form is better at low depth. At 3k and a spread of 2.5 h, the error is 0.46 against 0.60 h for a single group and 0.24 against 0.35 h for the single value.
-% here add code detail, like what's scritmo.estimate(method=...)
+
 We recommend the vector form in those cases. It is an option in the scRitmo package: \texttt{model.desynchrony(..., method="deconvolution", deconv\_form="vector")}. The default, \texttt{method="simulation"}, is the Twin method.
 
 
@@ -155,7 +151,6 @@ There is no conflict, as explained in R2.3a. The SABER-FISH analysis does not ne
 % TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
 % \paragraph{Changes to the manuscript.}
 %
-% The Results on the SABER-FISH data now say that the increase is taken from the estimates at the individual time points, that the single value over all time points is not used for it, and that in simulation the estimated values are on average higher than the true ones. They report the slope for both methods, with and without the first time point, with the bootstrap intervals, and the scatter of the real estimates. The claim of validation is reduced to what is written above. This simulation is added to the Supplement.
 
 \subsubsection*{R2.3c}
 
@@ -232,6 +227,7 @@ To better understand the limits of the aggregation procedure, the authors should
 
 \response
 
+
 % ------------------------------------------------------------------ R2.5
 \subsection*{R2.5}
 
@@ -243,6 +239,11 @@ Does this suggest that in fact there are significant errors being made in phase 
 If so, I would recommend discussing this in the Main Text and also toning down the statement ``The inferred phase accurately reconstructed the oscillation of both the endogenous (Rev-Erb$\alpha$) mRNA level and the Rev-Erb$\alpha$-Venus protein fluorescence'', since the meaning of ``accurately'' cannot really be quantitatively established in this setting.}
 
 \response
+Tanks to reviewrr...
+We share as well the reviewr's surprise in this. What is perhaps most striking is the shear correlation between the 2 values (main figure 2A) reaching R2 =0.76
+
+
+% TODO: tone down the accurately he is right
 
 % ------------------------------------------------------------------ R2.6
 \subsection*{R2.6}

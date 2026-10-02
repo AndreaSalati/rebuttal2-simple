@@ -61,6 +61,17 @@ We tested this on the simulation of R2.1, with 6 groups of 500 cells and 3 repli
 
 A1 disappears because Eq.~\eqref{eq:rhobar} averages $\rho$ over the whole distribution $\pb$. A2 disappears because $\rho$ contains the direction $m(\theta)$, so the bias is inside the prediction. The circular correction disappears because Eq.~\eqref{eq:vector-equation} compares mean vectors and does not add variances, and the finite $n_b$ term is included. What remains is an offset between the phase origin of the fitted model and ZT 0 (0.2 to 0.55 h in our simulation), which affects both methods.
 
+\paragraph{One $\sigma_{\text{bio}}$ shared by all groups.}
+
+When all groups have the same $\sigma_{\text{bio}}$, \maineq{16} averages the solutions of Eq.~\eqref{eq:vector-equation} over the groups. We can instead average the equations and solve once. The step follows from the law of total expectation, applied twice. Inside group $b$, conditioning on $\theta$ gives Eq.~\eqref{eq:total-expectation}, and from it $\E[\Rbar^2] = L_b(\sbio)$, with $L_b(\sigma) = |\bar\rho_b(\sigma)|^2 + (1 - |\bar\rho_b(\sigma)|^2)/n_b$ the left side of Eq.~\eqref{eq:vector-equation}. Across groups, take a cell at random, so that its group $b$ has probability $w_b = n_b/\sum_{b'} n_{b'}$, and condition on $b$. Then $\E_b\big[\E[\Rbar^2 \mid b]\big] = \sum_b w_b\, L_b(\sbio)$, which is again exact. Matching it to the data gives one equation in $\sigma$,
+\begin{equation}
+\sum_b n_b\, \Rbar^2 = \sum_b n_b\, L_b(\sigma) ,
+\label{eq:shared-sigma}
+\end{equation}
+which we solve as Eq.~\eqref{eq:vector-equation}, with an estimate of zero when the data of all groups together are tighter than the prediction at $\sigma = 0$. Each $L_b$ keeps its own $\mub$, so the technical part still changes from group to group. Only $\sigma$ is shared. Two things improve over \maineq{16}. The noise of the groups cancels before the solve, which is not linear in $\Rbar^2$. And the estimate is set to zero at most once per data set, not once per group, which is what makes \maineq{16} too large when the true $\sigma_{\text{bio}}$ is small.
+
+In the simulation of R2.1 with 10 replicates, the error of the single value at a true spread of zero is 0.25, 0.11 and 0.09 h at 3k, 10k and 30k, against 0.50, 0.39 and 0.32 h for \maineq{16} with the vector form. At a spread of 2.5 h and 3k it is 0.17 against 0.26 h. In the other settings the two differ by 0.01 h or less. The result is the same when we remove 1 or 2 of the 6 groups. When $\sigma_{\text{bio},b}$ changes across groups, Eq.~\eqref{eq:shared-sigma} gives approximately the average of $\sigma_{\text{bio},b}^2$ weighted by $n_b|\bar\rho_b|^2$ and not by $n_b$, so there we keep the estimates per group, as for SABER-FISH. In scRitmo it is \texttt{solve\_vector\_shared}.
+
 \paragraph{Assumptions that remain.}
 
 The wrapped normal shape of $\pb$; a fitted model close to the data generating process; one library size distribution shared by all groups (otherwise we build one grid per group); independent cells; and a grid large enough that its own sampling noise is small next to that of the data. The case where $\sbiob$ changes from group to group, as in the SABER-FISH data, is tested in R2.3b and R2.3c.

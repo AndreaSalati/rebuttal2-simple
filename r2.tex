@@ -161,10 +161,10 @@ Therefore in order to claim that scRitmo can extract meaningful increase of desy
 This simulation should then be analyzed with scRitmo and the results benchmarked for accuracy.}
 
 \response
-% rephrase more coherently with the rpvious answer, which ll tell the same thing. keep super short
-The reviewer is right. When $\sigma_{\text{bio}}$ changes across time points, the single value over all time points (\maineq{16}) is an average, $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$ with $n_t$ the number of cells at time point $t$, and not the individual values. 
+The reviewer is right that when $\sigma_{\text{bio}}$ changes across time points, the single value over all of them (\maineq{16}) is only the average $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$, with $n_t$ the number of cells at time point $t$, and it hides the change. 
 
-We ran the simulation the reviewer asks for, in two forms. The first is a simulated copy of the SABER-FISH experiment (\rebfig{fig:ramp_fish}). The second is an RNA-seq style experiment at three depths, with several shapes of $\sigma_{\text{bio}}$ (\rebfig{fig:ramp_rnaseq}).
+We ran the simulation the reviewer asks for, in two forms. The first is a simulated copy of the SABER-FISH experiment (\rebfig{fig:ramp_fish}). The second is an RNA-seq style experiment at three depths, with several shapes of $\sigma_{\text{bio}}$ (\rebfig{fig:ramp_rnaseq}). 
+In both, a rise of $\sigma_{\text{bio}}$ over time is recovered, with a slope about 10 to 15\% too small, and a constant or cyclic $\sigma_{\text{bio}}$ does not produce one. The estimates at single time points are less accurate, because of the error of the fitted model, and at 3k UMI per cell the RNA-seq style simulation is not reliable.
 
 \paragraph{SABER-FISH copy: simulation.}
 %  this is ok

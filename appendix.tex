@@ -3,7 +3,7 @@
 \newpage
 \section*{Appendix A: the grid method}
 
-This appendix describes the grid method summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 and A2 of the subtraction method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="deconvolution", deconv\_form="vector")}.
+This appendix describes the grid method summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 and A2 of the subtraction method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="grid")}.
 
 \paragraph{Starting point.}
 
@@ -70,7 +70,7 @@ When all groups have the same $\sigma_{\text{bio}}$, \maineq{16} averages the so
 \end{equation}
 which we solve as Eq.~\eqref{eq:vector-equation}, with an estimate of zero when the data of all groups together are tighter than the prediction at $\sigma = 0$. Each $L_b$ keeps its own $\mub$, so the technical part still changes from group to group. Only $\sigma$ is shared. Two things improve over \maineq{16}. The noise of the groups cancels before the solve, which is not linear in $\Rbar^2$. And the estimate is set to zero at most once per data set, not once per group, which is what makes \maineq{16} too large when the true $\sigma_{\text{bio}}$ is small.
 
-We tested it on the simulation of R2.1, also with 1 or 2 of the 6 groups removed, and it gives results similar to \maineq{16} with the grid method. When $\sigma_{\text{bio},b}$ changes across groups, Eq.~\eqref{eq:shared-sigma} gives approximately the average of $\sigma_{\text{bio},b}^2$ weighted by $n_b|\bar\rho_b|^2$ and not by $n_b$, so there we keep the estimates per group, as for SABER-FISH. In scRitmo it is \texttt{solve\_vector\_shared}.
+We tested it on the simulation of R2.1, also with 1 or 2 of the 6 groups removed, and it gives results similar to \maineq{16} with the grid method. When $\sigma_{\text{bio},b}$ changes across groups, Eq.~\eqref{eq:shared-sigma} gives approximately the average of $\sigma_{\text{bio},b}^2$ weighted by $n_b|\bar\rho_b|^2$ and not by $n_b$, so there we keep the estimates per group, as for SABER-FISH. In scRitmo it is \texttt{solve\_grid\_shared}.
 
 \paragraph{Assumptions that remain.}
 

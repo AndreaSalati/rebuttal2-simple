@@ -88,7 +88,7 @@ The agreement does not test the fit itself, which is the larger source of error 
 
 The grid method is better at low depth. At 3k and a spread of 2.5 h, the error is 0.46 against 0.60 h for a single group and 0.24 against 0.35 h for the single value.
 
-We recommend the grid method at low depth. The grid method is an option in the scRitmo package: \texttt{model.desynchrony(..., method="deconvolution", deconv\_form="vector")}. The default, \texttt{method="simulation"}, is the subtraction method.
+We recommend the grid method at low depth. The grid method is an option in the scRitmo package: \texttt{model.desynchrony(..., method="grid")}. The default, \texttt{method="subtraction"}, is the subtraction method.
 
 
 % TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.

@@ -116,3 +116,24 @@
   \end{minipage}
 \end{figure}
 }
+
+% ------------------------------------------------------------------ R2.5
+% From context_repo/review2/nb/flash_delay.py (last cell); data from
+% review2/scripts/flash_delay_sim.py (panel B).
+\newcommand{\figFlashDelay}{%
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth,keepaspectratio]{figures/FIGURE_flash_delay.pdf}
+
+  {\small
+  \captionof{figure}{\textbf{Delay between the Rev-erb$\alpha$-Venus protein and its mRNA in the FLASH-seq cells.}
+  \textbf{(A)} 695 cells. Unspliced \textit{Nr1d1} reads (pre-mRNA, green), Venus mRNA (blue) and Venus protein fluorescence (red) against the inferred phase. All values on a log scale, then z scored across cells (mean 0, standard deviation 1). Dots: means in 1 h bins. Lines: fitted cosines. Dotted lines: peaks of the fits.
+  \textbf{(B)} Simulated cells with a known delay of the protein after the mRNA (horizontal axis), analyzed like the real data. Vertical axis: delay measured against the inferred phase. Dots and bars: mean and standard deviation over 8 replicates of 696 cells (174 per bin of Venus level, as in the experiment). Dashed line: straight line fitted to the simulated points. Red line and band: the real cells (A), with the 95\% interval of a bootstrap over the cells.
+  \textbf{(C)} Delay of the protein peak after the mRNA peak for a 24 h rhythm, for a protein removed at a constant rate, as a function of its half-life. Dots: half-lives of REV-ERB$\alpha$ \cite{yin_e3_2010} and of Venus with the PEST sequence of the reporter \cite{abranches_generation_2013}. Red band: 95\% interval of the real delay (A) corrected with the fitted line in B.}
+  \label{fig:flash-delay}
+  }
+  \end{minipage}
+\end{figure}
+}

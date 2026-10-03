@@ -242,11 +242,32 @@ Does this suggest that in fact there are significant errors being made in phase 
 If so, I would recommend discussing this in the Main Text and also toning down the statement ``The inferred phase accurately reconstructed the oscillation of both the endogenous (Rev-Erb$\alpha$) mRNA level and the Rev-Erb$\alpha$-Venus protein fluorescence'', since the meaning of ``accurately'' cannot really be quantitatively established in this setting.}
 
 \response
-Tanks to reviewrr...
-We share as well the reviewr's surprise in this. What is perhaps most striking is the shear correlation between the 2 values (main figure 2A) reaching R2 =0.76
+We thank the reviewer. We were also surprised that the two curves look so similar, and we agree that ``accurately'' is too strong. We remove it. Below we measure the delay of the protein after its mRNA, show that errors in the inferred phase make it look shorter, and explain why a short delay is expected for this reporter.
 
+\paragraph{The protein peaks about 0.7 h after its mRNA.}
 
-% TODO: tone down the accurately he is right
+We fitted a 24 h cosine to each signal against the inferred phase and took the difference between the peaks. We compared the protein with the Venus mRNA, the transcript of the reporter itself. Like the protein, it is not one of the clock genes used to infer the phase. The protein peaks 0.66 h after this mRNA (95\% interval 0.51 to 0.81 h, bootstrap over cells; \rebfig[A]{fig:flash-delay}). So there is a delay, but a short one.
+
+The correlation between \textit{Nr1d1} mRNA and protein across cells (\mainfig{2A}, $R^2 = 0.73$) gives a rough check that does not use the inferred phase. For two 24 h cosines 3 h apart (45 degrees), $R^2$ across unsynchronized cells is at most $\cos^2(45^\circ) = 0.5$, and noise can only lower it. An $R^2$ of 0.73 therefore suggests a delay below 3 h. The check is rough, because variation that mRNA and protein share for other reasons, such as cell size, also raises $R^2$.
+
+\paragraph{Errors in the phase make the delay look shorter.}
+
+The reviewer is right that errors in the phase play a role. We simulated cells from the model fitted to these data. We added a protein signal that follows the \textit{Nr1d1} profile with a known delay, plus noise, and a reporter mRNA with the same profile as \textit{Nr1d1}. We sorted the cells into 4 bins of Venus level, as the real cells were sorted, and inferred the phase from the clock genes as for the real data. The measured delay was about two thirds of the true one (\rebfig[B]{fig:flash-delay}): a true delay of 2 h was measured as 1.3 h, and 4 h as 2.7 h. Against the true phase of the simulated cells, the delay came out right, so the shortening comes from the errors in the inferred phase. We corrected the real value with the straight line fitted to the simulated points (slope 0.67). This gives a delay of about 1 h (0.8 to 1.3 h), shorter than the 2 to 4 h the reviewer expects.
+
+\paragraph{Why the delay is short for this reporter.}
+
+For a protein made in proportion to its mRNA and degraded at a constant rate, the delay grows with the half-life of the protein (\rebfig[C]{fig:flash-delay}). Delays of 2 to 4 h correspond to half-lives of about 1.5 to 5 h. The Rev-erb$\alpha$-Venus reporter is built to be unstable. It is Venus with a PEST sequence, which targets proteins for fast degradation, fused to the first 116 amino acids of REV-ERB$\alpha$ \cite{nagoshi_circadian_2004}. Venus with this PEST sequence alone has a half-life of 1.8 h \cite{abranches_generation_2013}, which gives a delay of about 2.3 h. REV-ERB$\alpha$ itself has a half-life of about 30 min, which gives 0.7 h \cite{yin_e3_2010}. The signals that control this fast degradation lie in the part fused to the reporter: changing two serines among its first 116 amino acids makes REV-ERB$\alpha$ stable for more than 2 h \cite{yin_e3_2010}. Our corrected delay of about 1 h corresponds to a half-life of 0.6 to 0.9 h, between the two values. So the REV-ERB$\alpha$ part probably makes the reporter less stable than Venus with PEST alone, but we have not tested this. In mouse liver, REV-ERB$\alpha$ protein also peaks with relatively little delay after its mRNA \cite{narumi_mass_2016}.
+
+\paragraph{Delays shorter than 1 h are visible in these data.}
+
+As a positive control, we used the unspliced reads, which come from the pre-mRNA. Pre-mRNA is made before mature mRNA, so it must peak earlier, and it is not used to infer the phase. The unspliced \textit{Nr1d1} reads peak 0.8 h before the spliced \textit{Nr1d1} mRNA, which peaks together with the Venus mRNA (\rebfig[A]{fig:flash-delay}). The unspliced reads also come first for \textit{Nr1d2}, \textit{Dbp}, \textit{Per2}, \textit{Per3} and \textit{Bmal1} (0.1 to 1.3 h), the other clock genes with a clear rhythm in both forms. The phase errors do not hide delays of this size, they only shorten them.
+
+% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
+% \paragraph{Changes to the manuscript.}
+%
+% We removed ``accurately'' and ``showing a clear rhythmic alignment''. The Results now give the delay of the protein after its mRNA (0.66 h, about 1 h after correction), state that errors in the phase make such delays look shorter, and relate the short delay to the short half-life of the reporter. The panels of \rebfig{fig:flash-delay} are added to the Supplement.
+
+\figFlashDelay
 
 % ------------------------------------------------------------------ R2.6
 \subsection*{R2.6}

@@ -99,3 +99,20 @@
   \end{minipage}
 \end{figure}
 }
+
+% ------------------------------------------------------------------ R2.4
+\newcommand{\figReplicates}{%
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=0.55\linewidth,keepaspectratio]{figures/FIGURE_replicates_pooled_simple.pdf}
+
+  {\small
+  \captionof{figure}{\textbf{Single value of $\sigma_{\text{bio}}$ with 4, 8 or 12 samples over 4 time points.}
+  Simulation with 15 clock genes, 500 cells per sample, samples at 0, 6, 12 and 18 h (1, 2 or 3 samples per time point), and a true $\sigma_{\text{bio}}$ of about 2.5 h at every time point. Horizontal axis: UMI per cell. Vertical axis: single value of $\sigma_{\text{bio}}$ over all samples (\maineq{16}) with the Twin method, minus the true value (circular standard deviation of the true phases). Shades of blue: number of samples. Dots: the 10 simulated datasets. Boxes: median and quartiles.}
+  \label{fig:replicates}
+  }
+  \end{minipage}
+\end{figure}
+}

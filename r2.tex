@@ -215,7 +215,7 @@ What does the term $\sigma_b$ refer to in Eq.~16 of the revised main text?
 None of these have been defined.}
 
 \response
-% TODO: fix text?
+We thank the reviewer, these terms were not defined, and we now define them in the Methods. A group is one biological replicate of one cell type at one time point. This is what the reviewer calls a batch. The word ``condition'' is gone. For each group we have two variances: the variance of the inferred phases of its cells (the data variance), and the variance that a perfectly synchronized population would show because of measurement noise alone (the technical variance). To pool several groups, we average each of the two variances over those groups, weighted by the number of cells, and subtract the second average from the first to get the biological variance $\hat\sigma^2_{\text{bio}}$. The old $\sigma_b^2$ was either of the two variances of group $b$, and we now write the two averages separately. We also made the symbols consistent across the Methods, the Results and the Supplement.
 % ------------------------------------------------------------------ R2.4
 \subsection*{R2.4}
 

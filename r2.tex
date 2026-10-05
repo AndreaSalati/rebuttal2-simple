@@ -227,6 +227,8 @@ For example, the Auerbach et al paper which the authors analyze, had only 4 samp
 To better understand the limits of the aggregation procedure, the authors should demonstrate what happens in such limited datasets --- would accurate estimates of a population $\sigma_{\text{bio}}$ still be possible if there are just 4 samples?}
 
 \response
+We thank the reviewer. We added this simulation to the manuscript as panel H of Supplementary Figure S1 and now say so in the Results.
+
 We simulated the case of the reviewer. The 4 time points are fixed at 0, 6, 12 and 18 h, and we changed the number of samples at each of them (1, 2 or 3, so 4, 8 or 12 samples in total), at 3k, 10k and 30k UMI per cell, with a true $\sigma_{\text{bio}}$ of about 2.5 h (\rebfig{fig:replicates}). With 4 samples the single value of $\sigma_{\text{bio}}$ (\maineq{16}) is still close to the truth. The mean error is $-0.03$ h at 10k and 30k UMI, with a standard deviation over the 10 simulated datasets of 0.10 h at 10k and 0.04 h at 30k. At 3k UMI the error is larger ($+0.12$ h with a standard deviation of 0.17 h). Going to 8 or 12 samples does not change the error much. So the number of samples matters little, as long as they span the whole cycle. The depth matters more. The grid method gives the same picture. The error stays within about 0.1 h at 10k UMI and above, including the small error left by the approximations A1 and A2 of R2.1.
 
 \figReplicates

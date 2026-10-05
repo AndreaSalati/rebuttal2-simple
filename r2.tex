@@ -109,7 +109,7 @@ If so, when the authors say that ``At the level of individual time points the ad
 These points should be more carefully discussed in the Main Text and Methods, since the current version provides little clarity or discussion on this important issue.}
 
 \response
-We thank the reviewer. Our first round sentence was wrong and we withdraw it. The reviewer's sub-populations are the cells of one sample grouped by their true phase, which is exactly the conditioning on $\theta$ of R2.1. With this conditioning the decomposition follows the law of total variance exactly (Eq.~\eqref{eq:ltv}). The within term $\Tb$ is the average, over these sub-populations, of their technical variance $f(\theta)$, so there is an averaging, as the reviewer said. We had answered at the wrong level, that of the groups $S$ (one replicate at one ZT).
+We thank the reviewer. Our first round sentence was wrong and we withdraw it. The reviewer's sub-populations are the cells of one sample grouped by their true phase, which is exactly the conditioning on $\theta$ of R2.1. With this conditioning the decomposition follows the law of total variance exactly (Eq.~\eqref{eq:ltv}). The within term $\Tb$ is the average, over these sub-populations, of their technical variance $f(\theta)$, so there is an averaging, as the reviewer said. We had answered at the wrong level, that of the groups $S$ (one replicate at one ZT). The Methods now write the decomposition as the law of total variance conditioned on the true phase, and the Results say that the estimate at a single time point is only approximate (see also R2.3a).
 
 \paragraph{Where the approximation at single time points comes from.}
 
@@ -134,6 +134,8 @@ This then raises the following important questions which I do not currently unde
 Given that this is the main dataset with direct experimental validation of the $\sigma_{\text{bio}}$ estimates, the analysis of this data and the limitations should be discussed more carefully.}
 
 \response
+We thank the reviewer. We rewrote the Methods, the Results and the Discussion so that the decomposition is defined and estimated for each group of cells, and averaging over time points is described as an optional step, used only when there is good reason to assume that $\sigma_{\text{bio}}$ is constant. The Results now say that the SABER-FISH conclusion rests on the trend over time and not on single time points.
+
 We phrased the requirement badly, and we are sorry that the previous version was not clear. The method does not need an average around the clock. A single time point gives an estimate of $\sigma_{\text{bio}}$, and the SABER-FISH analysis uses the time points one by one. R2.1 shows the error of single groups next to the error of the average (\rebfig{fig:vector-vs-twin}). The average over time points lowers the error, but only when we have good reason to think that $\sigma_{\text{bio}}$ is the same at all time points.
 
 \subsubsection*{R2.3b}
@@ -144,13 +146,9 @@ Therefore, the authors need to give a clear justification for applying their met
 If this is only a very approximate and empirical application of the method, the authors should accordingly tone down their claims of discovering increasing desynchrony and using this dataset as a strong validation of their method.}
 
 \response
-% TODO: "We now claim less" must match the manuscript. Check once the SABER-FISH Results are toned down.
-There is no conflict, as explained in R2.3a. The SABER-FISH analysis does not need the same $\sigma_{\text{bio}}$ at all time points. We show this with simulations in which $\sigma_{\text{bio}}$ rises over time, below in R2.3c.
+We thank the reviewer. As described in R2.3a, we changed the text so that no single value of $\sigma_{\text{bio}}$ is required across time points, and the Discussion no longer describes the SABER-FISH dataset as a ground-truth validation. There is no conflict, as explained in R2.3a. The SABER-FISH analysis does not need the same $\sigma_{\text{bio}}$ at all time points. We show this with simulations in which $\sigma_{\text{bio}}$ rises over time, below in R2.3c.
 
-% TODO: "We no longer call this dataset a strong validation" must match the manuscript. Check once the Abstract, Results and Discussion are edited.
-% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
-% \paragraph{Changes to the manuscript.}
-%
+
 
 \subsubsection*{R2.3c}
 

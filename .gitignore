@@ -5,6 +5,5 @@
 *.DS_store
 *.code-workspace
 *.fls
-comp.sh
 main.pdf
 

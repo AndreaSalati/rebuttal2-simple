@@ -156,7 +156,7 @@ Therefore in order to claim that scRitmo can extract meaningful increase of desy
 This simulation should then be analyzed with scRitmo and the results benchmarked for accuracy.}
 
 \response
-The reviewer is right that when $\sigma_{\text{bio}}$ changes across time points, the single value over all of them (\maineq{16}) is only the average $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$, with $n_t$ the number of cells at time point $t$, and this average hides the change.
+We thank the reviewer. We added these simulations to the manuscript as Supplementary Figure S9 and now describe them in the Results, in the SABER-FISH section. The reviewer is right that when $\sigma_{\text{bio}}$ changes across time points, the single value over all of them (\maineq{16}) is only the average $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$, with $n_t$ the number of cells at time point $t$, and this average hides the change.
 
 We ran the simulation the reviewer asks for, in two forms. The first is a simulated copy of the SABER-FISH experiment (\rebfig{fig:ramp_fish}). The second is an RNA-seq style experiment at three depths, with several shapes of $\sigma_{\text{bio}}$ (\rebfig{fig:ramp_rnaseq}). 
 In both simulations, a rise of $\sigma_{\text{bio}}$ over time is recovered, with a slope about 10 to 15\% too small, and a constant or cyclic $\sigma_{\text{bio}}$ does not produce one. The estimates at single time points are less accurate than the slope, because of the error of the fitted model, and at 3k UMI per cell the RNA-seq style simulation is not reliable.
@@ -194,11 +194,6 @@ For the ramp, the slope of a line fitted to the 12 estimates, divided by the tru
 \paragraph{RNA-seq style: limits.}
 
 With a true $\sigma_{\text{bio}}$ of 0, the single value is too high at low depth: 1.4 to 1.7 h at 3k, 0.5 to 0.8 h at 10k, and $-0.1$ to 0.4 h at 30k. The grid method sets negative estimates to zero. At 10k and below, a small $\sigma_{\text{bio}}$ is therefore not distinguished from none. In a one day design (ZT 0 to 22), where the ramp and the clock phase are the same axis, the slope ratios are lower (0.77 and 0.86 at 30k, 0.60 and 0.72 at 10k), the constant and cosine profiles give false slopes of up to 0.05 h per h at 10k (the true ramp slope is 0.11), and the grid method is 0.45 h off at 10k for the cosine peaking at ZT10. A rise of $\sigma_{\text{bio}}$ within a single day should be interpreted with care.
-
-% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
-% \paragraph{Changes to the manuscript.}
-%
-% We state in the Methods that the pooled $\sigma_{\text{bio}}$ is a weighted average when $\sigma_{\text{bio}}$ changes across time points, and we add this simulation to the Supplement.
 
 \figRampFish
 

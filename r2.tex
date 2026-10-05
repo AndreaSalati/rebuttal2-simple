@@ -14,6 +14,8 @@ Otherwise, Eq.~14 appears quite ad hoc and it is impossible to interpret what th
 \response
 We thank the reviewer. The reviewer is right: a split of the variance inside one ZT has to follow the law of total variance (LTV), so we must say which variable we condition on. Writing this out showed us where \maineq{14} is exact and where it is only approximate, and it led us to a new estimator, the grid method, that avoids these approximations.
 
+We have substantially improved the Methods section on the variance decomposition. It now defines the conditioning variable (the true phase of the cell), writes the decomposition as the law of total variance, says when the subtraction estimator is exact and which two approximations make it approximate at a single time point, and presents the subtraction estimator and the grid method as two estimators of the same quantity. The grid method is described in Supplementary Note 2 and compared with the subtraction estimator in simulation and on the real data in Supplementary Figure S8.
+
 \paragraph{The conditioning variable is the true phase $\theta$ of the cell.}
 
 In short: the conditioning variable is the latent true phase $\theta$ of a cell in one replicate at one ZT. $\sigma_{\text{bio}}^2$ is the variance of $\theta$ across those cells, and $\sigma_{\text{tech}}^2$ is the average, over those cells, of the variance of the inferred phase at fixed $\theta$. In the reviewer's terms, $S$ (one replicate at one ZT) is the outer split, and $\theta$ is the variable inside the within $S$ term, which is the further decomposition we referred to.
@@ -90,11 +92,6 @@ The grid method is better at low depth. At 3k and a spread of 2.5 h, the error i
 
 We recommend the grid method at low depth. The grid method is an option in the scRitmo package: \texttt{model.desynchrony(..., method="grid")}. The default, \texttt{method="subtraction"}, is the subtraction method.
 
-
-% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
-% \paragraph{Changes to the manuscript.}
-%
-% The Methods now define the conditioning variable $\theta$, the split in Eq.~\eqref{eq:ltv} and the circular form in Eq.~\eqref{eq:total-expectation}. They state when Eq.~14 is exact, and they describe the grid method in one paragraph. The Supplement gives the grid method in full and its comparison with the subtraction method. The subtraction method stays the default.
 
 \figEstimatorAbsError
 

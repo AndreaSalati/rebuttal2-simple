@@ -1,9 +1,9 @@
 % !TeX root = main.tex
-% Appendix A: full description of the grid method (moved out of R2.1).
+% Appendix A: full description of the \emph{grid method} (moved out of R2.1).
 \newpage
-\section*{Appendix A: the grid method}
+\section*{Appendix A: the \emph{grid method}}
 
-This appendix describes the grid method summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 and A2 of the subtraction method. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="grid")}.
+This appendix describes the \emph{grid method} summarised in the response to R2.1. It uses the notation of R2.1: group $b$ of $n_b$ cells, true phase $\theta \sim \pb$, inferred phase $\that$, $\rho(\theta) = \E[e^{\ii\that} \mid \theta] = r(\theta)\, e^{\ii m(\theta)}$, and the approximations A1 and A2 of the \emph{subtraction method}. In scRitmo it is \texttt{estimate\_phase\_desynchrony(sigma\_tech\_method="grid")}.
 
 \paragraph{Starting point.}
 
@@ -55,7 +55,7 @@ Here $\Rbar$ and $n_b$ come from the data, the $c_j$ from the grid, and $\mub$ i
 The steps above need $\mub$. When the external time does not give the clock phase of the cells, as in the SABER-FISH data (time after dexamethasone), $\mub$ has to come from the data. The circular mean of the inferred phases is not a good choice, because the bias pulls it toward the trough of the aggregate circadian counts. The grid already measures this pull: $m(\theta) = \arg\rho(\theta)$ is the mean direction of the inferred phases of a synchronized group at true phase $\theta$. We therefore take as $\mub$ the phase whose synchronized group has the observed mean direction, that is the solution of $\arg\rho(\mu) = \arg\bar z_b$ (the root closest to $\arg\bar z_b$). This undoes the shift of the mean by the bias. Where $m(\theta)$ is too flat to be inverted, which can happen at very low depth, we keep the circular mean. We also tried to solve for $\mub$ and $\sigma$ together, matching both the direction and the length of $\bar\rho_b(\sigma)$ to $\bar z_b$, and it was not better.
 
 We tested this on the simulation of R2.1, with 6 groups of 500 cells and 3 replicates, and one fit and one grid shared by all variants. Compared with the circular mean, the corrected phase lowers the mean absolute error of $\hat\sigma_{\text{bio},b}$ at 3k UMI per cell from 0.9 to 1.2 h to 0.4 to 0.8 h. This is the same as with the known ZT (0.3 to 0.8 h). At 10k it is between 0.05 h worse and 0.08 h better than with the known ZT, and at 30k the three choices of $\mub$ differ by 0.03 h or less. In scRitmo this is the option \texttt{debias\_mean=True}, together with \texttt{use\_circular\_mean=True}.
-% TODO: not yet applied to the SABER-FISH grid method (R2.3b numbers still use the plain circular mean). Rerun smfish_vector_boot.py with debias_mean=True and decide.
+% TODO: not yet applied to the SABER-FISH \emph{grid method} (R2.3b numbers still use the plain circular mean). Rerun smfish_vector_boot.py with debias_mean=True and decide.
 
 \paragraph{What is removed.}
 
@@ -70,7 +70,7 @@ When all groups have the same $\sigma_{\text{bio}}$, \maineq{16} averages the so
 \end{equation}
 which we solve as Eq.~\eqref{eq:vector-equation}, with an estimate of zero when the data of all groups together are tighter than the prediction at $\sigma = 0$. Each $L_b$ keeps its own $\mub$, so the technical part still changes from group to group. Only $\sigma$ is shared. Two things improve over \maineq{16}. The noise of the groups cancels before the solve, which is not linear in $\Rbar^2$. And the estimate is set to zero at most once per data set, not once per group, which is what makes \maineq{16} too large when the true $\sigma_{\text{bio}}$ is small.
 
-We tested it on the simulation of R2.1, also with 1 or 2 of the 6 groups removed, and it gives results similar to \maineq{16} with the grid method. When $\sigma_{\text{bio},b}$ changes across groups, Eq.~\eqref{eq:shared-sigma} gives approximately the average of $\sigma_{\text{bio},b}^2$ weighted by $n_b|\bar\rho_b|^2$ and not by $n_b$, so there we keep the estimates per group, as for SABER-FISH. In scRitmo it is \texttt{solve\_grid\_shared}.
+We tested it on the simulation of R2.1, also with 1 or 2 of the 6 groups removed, and it gives results similar to \maineq{16} with the \emph{grid method}. When $\sigma_{\text{bio},b}$ changes across groups, Eq.~\eqref{eq:shared-sigma} gives approximately the average of $\sigma_{\text{bio},b}^2$ weighted by $n_b|\bar\rho_b|^2$ and not by $n_b$, so there we keep the estimates per group, as for SABER-FISH. In scRitmo it is \texttt{solve\_grid\_shared}.
 
 \paragraph{Assumptions that remain.}
 

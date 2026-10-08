@@ -24,10 +24,10 @@
   \includegraphics[width=0.85\linewidth,height=0.6\textheight,keepaspectratio]{figures/FIGURE_estimator_abs_error.pdf}
 
   {\small
-  \captionof{figure}{\textbf{Absolute error of $\hat\sigma_{\text{bio}}$ in simulation, \emph{subtraction method} and \emph{grid method}.}
+  \captionof{figure}{\textbf{Absolute error of $\hat\sigma_{\text{bio}}$ in simulation, \submethod and \gridmethod.}
   15 clock genes, 6 groups of 1000 cells at phases 4 h apart, 15 replicates of the experiment. Columns: low and high desynchrony, with the mean true spread in the panel titles. The x axis is the number of UMI per cell. A group whose estimate falls below the technical value is counted as zero for both methods.
   \textbf{(A)} Error of each group: absolute value of the estimate minus the circular standard deviation of the true phases of the cells of the group, log scale. Boxes: median and quartiles, whiskers to 1.5 times the interquartile range, 90 groups per box. Dots: single groups.
-  \textbf{(B)} Mean absolute error of a single group (light bars, 90 groups) and of the single value over the 6 groups of one replicate (dark bars, \maineq{16}, 15 replicates), for the \emph{subtraction method} (blue) and the \emph{grid method} (orange). The truth of the single value is the same average taken over the true values of the groups.}
+  \textbf{(B)} Mean absolute error of a single group (light bars, 90 groups) and of the single value over the 6 groups of one replicate (dark bars, \maineq{16}, 15 replicates), for the \submethod (blue) and the \gridmethod (orange). The truth of the single value is the same average taken over the true values of the groups.}
   \label{fig:vector-vs-twin}
   }
   \end{minipage}
@@ -43,11 +43,11 @@
   \includegraphics[width=\linewidth,height=0.5\textheight,keepaspectratio]{figures/FIGURE_VECTOR_REAL.pdf}
 
   {\small
-  \captionof{figure}{\textbf{Subtraction method and \emph{grid method} on the real data.}
-  \textbf{(A)} SABER-FISH, as in \mainfig{2G}. Grey: $\sigma_{\text{data}}$. Blue: $\sigma_{\text{bio}}$ with the \emph{subtraction method}. Orange: $\sigma_{\text{bio}}$ with the \emph{grid method}. Bands: 95\% intervals of a bootstrap over the cells (2000 draws, technical part held fixed). Dashed lines: lines fitted to the 11 time points after the first one (open markers, left out of the fit), slope not allowed to be negative.
+  \captionof{figure}{\textbf{The \submethod and \gridmethod on the real data.}
+  \textbf{(A)} SABER-FISH, as in \mainfig{2G}. Grey: $\sigma_{\text{data}}$. Blue: $\sigma_{\text{bio}}$ with the \submethod. Orange: $\sigma_{\text{bio}}$ with the \gridmethod. Bands: 95\% intervals of a bootstrap over the cells (2000 draws, technical part held fixed). Dashed lines: lines fitted to the 11 time points after the first one (open markers, left out of the fit), slope not allowed to be negative.
   \textbf{(B)} Distribution of the period obtained from the slopes in A, as in \mainfig{2H}. Shaded: mean period plus or minus $\sigma_T$.
-  \textbf{(C)} Mouse, \extset, as in \mainfig{3J}. Single value of $\sigma_{\text{bio}}$ over the samples of each cell type (\maineq{16}). Colors: organ. Plain bars: \emph{subtraction method}. Hatched bars: \emph{grid method}. Error bars: standard error.
-  \textbf{(D)} \textit{Drosophila}, as in \mainfig{4F}. Single value of $\sigma_{\text{bio}}$ per cluster. Blue: \emph{subtraction method}. Orange: \emph{grid method}. Plain bars: light dark cycle (LD). Hatched bars: constant darkness (DD). Error bars: standard error.}
+  \textbf{(C)} Mouse, \extset, as in \mainfig{3J}. Single value of $\sigma_{\text{bio}}$ over the samples of each cell type (\maineq{16}). Colors: organ. Plain bars: \submethod. Hatched bars: \gridmethod. Error bars: standard error.
+  \textbf{(D)} \textit{Drosophila}, as in \mainfig{4F}. Single value of $\sigma_{\text{bio}}$ per cluster. Blue: \submethod. Orange: \gridmethod. Plain bars: light dark cycle (LD). Hatched bars: constant darkness (DD). Error bars: standard error.}
   \label{fig:vector-real}
   }
   \end{minipage}
@@ -64,7 +64,7 @@
 
   {\footnotesize
   \captionof{figure}{\textbf{A simulated copy of the SABER-FISH experiment, with a known $\sigma_{\text{bio}}$ at each time point.}
-  \textbf{(A, B)} Simulation from the fitted model of the real data (4 genes), with the 12 time points and the numbers of cells of the real experiment and the cell areas of the real cells of each time point as library sizes. The model was fitted again on each of the 10 simulated datasets, and the estimates were made with the same settings as for the real data. Estimated $\sigma_{\text{bio}}$ at each time point when the true value rises from 1.0 to 3.5 h (A) and when it is constant at 2.24 h (B). Black: true value, the circular standard deviation of the true phases of the simulated cells of that time point. Blue and orange: \emph{subtraction method} and \emph{grid method}, mean over the replicates. Blue band: standard deviation of the \emph{subtraction method} over the replicates. Dashed purple: oracle with the fitted model, which knows the true phase of every cell and simulates the time point again with the fitted model. Dotted grey: the same oracle with the model that generated the data. The time point at 18 h has the fewest cells (116).
+  \textbf{(A, B)} Simulation from the fitted model of the real data (4 genes), with the 12 time points and the numbers of cells of the real experiment and the cell areas of the real cells of each time point as library sizes. The model was fitted again on each of the 10 simulated datasets, and the estimates were made with the same settings as for the real data. Estimated $\sigma_{\text{bio}}$ at each time point when the true value rises from 1.0 to 3.5 h (A) and when it is constant at 2.24 h (B). Black: true value, the circular standard deviation of the true phases of the simulated cells of that time point. Blue and orange: \submethod and \gridmethod, mean over the replicates. Blue band: standard deviation of the \submethod over the replicates. Dashed purple: oracle with the fitted model, which knows the true phase of every cell and simulates the time point again with the fitted model. Dotted grey: the same oracle with the model that generated the data. The time point at 18 h has the fewest cells (116).
   \textbf{(C, D)} Spread of the single cell periods $\sigma_T$, obtained from the slope of a line fitted to the estimates of the 11 time points after the first one (the slope is not allowed to be negative), for the ramp (C) and the constant profile (D). Same colors as in A. The two oracles have open markers (fitted model in purple, true generator in grey). Black bar: $\sigma_T$ from the line fitted to the true values, mean over the 10 replicates (it is not zero for the constant profile, because the true values vary a little around 2.24 h). Small dots: the 10 replicates. Large markers: mean and standard deviation over the replicates.}
   \label{fig:ramp_fish}
   }
@@ -85,7 +85,7 @@
   15 clock genes, 12 time points over two days, 500 cells per time point, 5 replicates per setting. Columns are the depths.
   \textbf{(A)} Estimated $\sigma_{\text{bio}}$ at each time point for four true profiles (rows). Black: true value. Lines: mean over the replicates. Bands: standard deviation over the replicates. The true cosine is sampled every 4 h (0.2 to 2.8 h) and repeats on the second day.
   \textbf{(B)} The single value over all time points (\maineq{16}) for the same profiles (cosine ZT10 and ZT22 are the two cosines of A) and for a control with a true $\sigma_{\text{bio}}$ of 0. Black bar: true value, the square root of the average of the true $\sigma_{\text{bio}}^2$ weighted by cell number. Large markers: mean and standard deviation over the replicates. Small dots: the 5 replicates.
-  Subtraction method and \emph{grid method} are defined in the text and in the response to R2.1.}
+  The \submethod and \gridmethod are defined in the text and in the response to R2.1.}
   \label{fig:ramp_rnaseq}
   }
   \end{minipage}
@@ -102,7 +102,7 @@
 
   {\small
   \captionof{figure}{\textbf{Single value of $\sigma_{\text{bio}}$ with 4, 8 or 12 samples over 4 time points.}
-  Simulation with 15 clock genes, 500 cells per sample, samples at 0, 6, 12 and 18 h (1, 2 or 3 samples per time point), and a true $\sigma_{\text{bio}}$ of about 2.5 h at every time point. Horizontal axis: UMI per cell. Vertical axis: single value of $\sigma_{\text{bio}}$ over all samples (\maineq{16}) with the \emph{subtraction method}, minus the true value (circular standard deviation of the true phases). Shades of blue: number of samples. Dots: the 10 simulated datasets. Boxes: median and quartiles.}
+  Simulation with 15 clock genes, 500 cells per sample, samples at 0, 6, 12 and 18 h (1, 2 or 3 samples per time point), and a true $\sigma_{\text{bio}}$ of about 2.5 h at every time point. Horizontal axis: UMI per cell. Vertical axis: single value of $\sigma_{\text{bio}}$ over all samples (\maineq{16}) with the \submethod, minus the true value (circular standard deviation of the true phases). Shades of blue: number of samples. Dots: the 10 simulated datasets. Boxes: median and quartiles.}
   \label{fig:replicates}
   }
   \end{minipage}

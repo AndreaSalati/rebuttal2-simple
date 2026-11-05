@@ -36,7 +36,7 @@ The \submethod estimates the technical term with a Twin dataset: a copy of the g
 \item \textbf{A1}, $\Tb$ is evaluated at one phase instead of averaged over $\pb$. Where $f$ curves upward around $\mub$, the Twin variance is too small and the estimate of $\sigma_{\text{bio}}$ too large. Where $f$ curves downward, the reverse.
 \item \textbf{A2}, the bias is left out of $\Bb$. Inferred phases are pulled toward the trough of the aggregate circadian counts (about ZT21), so cells on both sides of the trough end up closer together, and near the trough the estimate of $\sigma_{\text{bio}}$ is too small.
 \end{itemize}
-The size of the bias does not by itself make the \submethod wrong. The Twin dataset is inferred with the same estimator as the data, so the bias is inside the Twin variance and cancels in the subtraction, as in indirect inference \cite{gourieroux_indirect_1993}. Only the change of the bias across the phases of a group is left in A2.
+The size of the bias does not by itself make the \submethod wrong. The Twin dataset is inferred with the same estimator as the data, so the bias is inside the Twin variance and cancels in the subtraction (\cite{gourieroux_indirect_1993} describes a similar effect). Only the change of the bias across the phases of a group is left in A2.
 
 \paragraph{The average over groups.}
 

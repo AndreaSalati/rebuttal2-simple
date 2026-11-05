@@ -59,11 +59,6 @@ These points should be more carefully discussed in the Main Text and Methods, si
 \response
 We thank the reviewer. Our first round sentence was wrong and we withdraw it. The reviewer's sub-populations are the cells of one sample grouped by their true phase, which is exactly the conditioning on $\theta$ of R2.1. With this conditioning the decomposition follows the law of total variance exactly (Eq.~\eqref{eq:ltv}). The within term $\Tb$ is the average, over these sub-populations, of their technical variance $f(\theta)$, so there is an averaging, as the reviewer said. We had answered at the wrong level, that of the groups $S$ (one replicate at one ZT). The Methods now write the decomposition as the law of total variance conditioned on the true phase, and the Results say that the estimate at a single time point is only approximate (see also R2.3a). This approximation does not come from a departure from the law of total variance, which holds exactly. It comes from how we estimate the technical term at a single time point (R2.1), and it is small, about 0.15 h in the simulation of R2.3c.
 
-% TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
-% \paragraph{Changes to the manuscript.}
-%
-% The Methods write the decomposition as the law of total variance with $\theta$ as the conditioning variable, define $\sigma_{\text{tech}}^2$ as the average of $f(\theta)$ over the cells of a group, and state that we evaluate it at one phase. The Main Text says in one sentence that the decomposition is exact and that $\sigma_{\text{tech}}$ is estimated only approximately at a single time point.
-
 % ------------------------------------------------------------------ R2.3
 \subsection*{R2.3}
 
@@ -103,7 +98,7 @@ Therefore in order to claim that scRitmo can extract meaningful increase of desy
 This simulation should then be analyzed with scRitmo and the results benchmarked for accuracy.}
 
 \response
-We thank the reviewer. We added these simulations to the manuscript as Supplementary Figure S9 and describe them in the Results, in the SABER-FISH section. The reviewer is right that when $\sigma_{\text{bio}}$ changes across time points, the single value over all of them (\maineq{16}) is only the average $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$, with $n_t$ the number of cells at time point $t$, and this average hides the change. For SABER-FISH we therefore use the estimates per time point and the slope over time.
+We thank the reviewer. We added these simulations to the manuscript as Supplementary Figures S8 and S9 and describe them in the Results, in the SABER-FISH section. The reviewer is right that when $\sigma_{\text{bio}}$ changes across time points, the single value over all of them (\maineq{16}) is only the average $\sqrt{\sum_t n_t \sigma_t^2 / \sum_t n_t}$, with $n_t$ the number of cells at time point $t$, and this average hides the change. For SABER-FISH we therefore use the estimates per time point and the slope over time.
 
 We ran the simulation the reviewer asks for in two forms, a copy of the SABER-FISH experiment (\rebfig{fig:ramp_fish}) and an RNA-seq style experiment (\rebfig{fig:ramp_rnaseq}). In both, a rise of $\sigma_{\text{bio}}$ over time is recovered with a slope about 10 to 15\% too small, and a constant or cyclic $\sigma_{\text{bio}}$ does not produce one. The estimates at single time points are less accurate than the slope, mainly because of the error of the fitted model.
 
@@ -161,7 +156,7 @@ Does this suggest that in fact there are significant errors being made in phase 
 If so, I would recommend discussing this in the Main Text and also toning down the statement ``The inferred phase accurately reconstructed the oscillation of both the endogenous (Rev-Erb$\alpha$) mRNA level and the Rev-Erb$\alpha$-Venus protein fluorescence'', since the meaning of ``accurately'' cannot really be quantitatively established in this setting.}
 
 \response
-We thank the reviewer. We agree that ``accurately'' is too strong, and we removed it. We also agree that a protein should lag its mRNA. The reporter protein we use is built to be degraded fast, which limits how long its lag after the mRNA can be.
+We thank the reviewer. We agree that ``accurately'' is too strong, and we removed it from the abstract, the Results and the Discussion. The Results now also say that the reporter is degraded fast, so its delay after the mRNA is expected to be short. We also agree that a protein should lag its mRNA. The reporter protein we use is built to be degraded fast, which limits how long its lag after the mRNA can be.
 
 The reporter is Venus fused to a nuclear localization signal and a PEST sequence, which targets proteins for fast degradation, expressed under \textit{Nr1d1} regulatory sequences \cite{nagoshi_circadian_2004}. For a protein made in proportion to its mRNA and degraded at a constant rate, the delay of a 24 h rhythm is
 \begin{equation}
@@ -169,7 +164,6 @@ The reporter is Venus fused to a nuclear localization signal and a PEST sequence
 \end{equation}
 where $t_{1/2}$ is the half-life of the protein. Delays of 2 to 4 h need half-lives of about 1.5 to 5 h. The same Venus protein with the nuclear localization signal and the PEST sequence has a half-life of about 1.8 h in mouse embryonic stem cells \cite{abranches_generation_2013}, which gives a delay of about 2.3 h. So the delay expected for this reporter is at the short end of the range the reviewer quotes. We did not measure the half-life of the reporter in the 3T3 fibroblasts used here, so the true delay may be shorter or longer. Mass spectrometry of mouse liver also finds that the endogenous clock protein REV-ERB$\alpha$ has relatively little delay after its mRNA, compared with other clock proteins \cite{narumi_mass_2016}. The similar mRNA and protein curves therefore do not by themselves show large errors in the inferred phase, although we cannot exclude some error.
 
-% TODO: manuscript NOT updated yet. Planned change: remove ``accurately'' and add one sentence on the fast degradation of the PEST reporter, with the delay formula only if the main text has room.
 
 % ------------------------------------------------------------------ R2.6
 \subsection*{R2.6}

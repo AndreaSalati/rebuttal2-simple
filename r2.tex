@@ -36,7 +36,7 @@ The \submethod estimates the technical term with a Twin dataset: a copy of the g
 \item \textbf{A1}, $\Tb$ is evaluated at one phase instead of averaged over $\pb$. Where $f$ curves upward around $\mub$, the Twin variance is too small and the estimate of $\sigma_{\text{bio}}$ too large. Where $f$ curves downward, the reverse.
 \item \textbf{A2}, the bias is left out of $\Bb$. Inferred phases are pulled toward the trough of the aggregate circadian counts (about ZT21), so cells on both sides of the trough end up closer together, and near the trough the estimate of $\sigma_{\text{bio}}$ is too small.
 \end{itemize}
-The size of the bias does not by itself make the \submethod wrong. The Twin dataset is inferred with the same estimator as the data, so the bias is inside the Twin variance and cancels in the subtraction (\cite{gourieroux_indirect_1993} describes a similar effect). Only the change of the bias across the phases of a group is left in A2.
+The size of the bias does not by itself make the \submethod wrong. The Twin dataset is inferred with the same estimator as the data, so the bias is inside the Twin variance and cancels in the subtraction (\cite{gourieroux_indirect_1993} describes a similar effect). Only the change of the bias across the phases of a group is left in A2. A1 and A2 are small. In the simulated copy of the SABER-FISH experiment (R2.3c), an oracle that knows the true phase of every cell makes neither approximation, and at single time points \maineq{14} is only about 0.15 h above it (\rebfig[A]{fig:ramp_fish}). In the average over groups they add less, because they partly cancel (next paragraph).
 
 \paragraph{The average over groups.}
 
@@ -46,13 +46,7 @@ When $\sigma_{\text{bio}}$ is the same in all groups, the average lowers the err
 
 We simulated 15 clock genes and 6 groups of 1000 cells 4 h apart, at 3k, 10k and 30k UMI per cell, with a true spread of 1.0 h or about 2.5 h and 15 replicates. The data are generated from a perturbed copy of the fitted gene profiles, so the fitted model is not the generating model. With a spread of 2.5 h, the mean absolute error of a single group is 0.51, 0.21 and 0.14 h at 3k, 10k and 30k, and that of the single value over the 6 groups is 0.28, 0.04 and 0.02 h (\rebfig{fig:vector-vs-twin}). With a spread of 1.0 h the errors are 0.68, 0.32 and 0.14 h for a single group and 0.45, 0.12 and 0.05 h for the single value.
 
-\paragraph{A check of A1 and A2 on the real data.}
-
-To check that A1 and A2 do not drive our results, we also estimated \sigmabio without them. We simulated Twin cells at 24 phases over the cycle, averaged their mean unit vector over a wrapped normal distribution of true phases, and took as \sbiob the width that matches the observed $\Rbar$, so the bias stays inside the prediction. For the mouse cell types of \mainfig{3J} the two estimates differ by 0.02 h or less, except for the Lyve$^+$ macrophages (3.79 against 3.88 h, \rebfig[B]{fig:vector-real}). For the \textit{Drosophila} clusters of \mainfig{4F} the two estimates are very similar (\rebfig[C]{fig:vector-real}). On SABER-FISH both estimates rise over time (\rebfig[A]{fig:vector-real}), but the two fitted slopes differ: the spread of periods they give (R2.3c) is 1.37 h with \maineq{14} and 1.04 h with the check, so the size of this spread is less certain than the rise itself. We therefore keep \maineq{14} as the estimator of the paper.
-
 \figEstimatorAbsError
-
-\figVectorReal
 
 % ------------------------------------------------------------------ R2.2
 \subsection*{R2.2}
@@ -67,7 +61,7 @@ We thank the reviewer. Our first round sentence was wrong and we withdraw it. Th
 
 \paragraph{Where the approximation at single time points comes from.}
 
-The approximation does not come from a departure from the law of total variance, since the decomposition is exact. It comes in part from how the \submethod estimates the within term: the \submethod evaluates $f$ at one phase instead of averaging $f$ over the sub-populations, that is over $\pb$ (A1 in R2.1). The bias (A2) adds to this approximation. This is what we meant in the first round by ``partly because $\sigma_{\text{tech}}$ is itself phase dependent'', but we did not explain it. The paragraph ``The average over groups'' in R2.1 explains why averaging over groups cancels part of the error of the \submethod and when the average over groups may be used. An estimator that does this average directly gives the same results on the real data (R2.1).
+The approximation does not come from a departure from the law of total variance, since the decomposition is exact. It comes in part from how the \submethod estimates the within term: the \submethod evaluates $f$ at one phase instead of averaging $f$ over the sub-populations, that is over $\pb$ (A1 in R2.1). The bias (A2) adds to this approximation. This is what we meant in the first round by ``partly because $\sigma_{\text{tech}}$ is itself phase dependent'', but we did not explain it. The paragraph ``The average over groups'' in R2.1 explains why averaging over groups cancels part of the error of the \submethod and when the average over groups may be used.
 
 % TODO: manuscript NOT updated yet. Planned changes below; uncomment and match to the real manuscript text once it is edited.
 % \paragraph{Changes to the manuscript.}

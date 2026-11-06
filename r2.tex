@@ -100,15 +100,9 @@ At single time points the estimates are too high on average, by 0.53 h for the r
 
 \paragraph{RNA-seq style simulation.}
 
-We simulated 15 clock genes and 12 time points of 500 cells, 4 h apart over two days, at 3k, 10k and 30k UMI per cell, with 5 replicates. The true $\sigma_{\text{bio}}$ was constant (2.25 h), a ramp from 1.0 to 3.5 h, a cosine from 0 to 3 h with its peak at ZT10 or ZT22, or zero. The cosines are the hard case, because A1 and A2 do not cancel in the average when $\sigma_{\text{bio}}$ depends on the phase. The model was retrained on each dataset.
-
-From 10k upward, the estimates at each time point follow all profiles, and are too high by up to about 0.8 h where the true $\sigma_{\text{bio}}$ is near zero (\rebfig[A]{fig:ramp_rnaseq}). For the four profiles, the single value is off by at most 0.07 h at 30k and 0.12 h at 10k (\rebfig[B]{fig:ramp_rnaseq}). For the ramp, the fitted slope divided by the true slope is 0.90, 0.85 and 0.64 at 30k, 10k and 3k, and the constant and cosine profiles give slopes of at most 0.006 h per h from 10k upward (ramp 0.05). 
-
-With a true $\sigma_{\text{bio}}$ of 0, the single value is 1.44, 0.45 and $-0.08$ h at 3k, 10k and 30k, so at 10k and below a small $\sigma_{\text{bio}}$ cannot be told apart from none. With a single day of sampling, a rise is recovered less well (slope ratio 0.77 at 30k and 0.60 at 10k).
+We also ran an RNA-seq style simulation (15 clock genes, 12 time points of 500 cells over two days, 3k, 10k and 30k UMI per cell, 5 replicates; Supplementary Figure S9). From 10k UMI per cell upward the estimates per time point follow both a ramp from 1.0 to 3.5 h and a constant profile, and the fitted slope of the ramp is 0.90 and 0.85 of the true one at 30k and 10k (0.64 at 3k).
 
 \figRampFish
-
-\figRampRnaseq
 
 \subsubsection*{R2.3d}
 

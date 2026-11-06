@@ -53,24 +53,8 @@
 \end{figure}
 }
 
-% Made by context_repo/review2/nb/least_resistance/ramp_rnaseq.py.
-\newcommand{\figRampRnaseq}{%
-\begin{figure}[H]
-  \centering
-  \begin{minipage}{\linewidth}
-  \centering
-  \includegraphics[width=\linewidth,height=0.72\textheight,keepaspectratio]{figures/FIGURE_ramp_rnaseq.pdf}
-
-  {\small
-  \captionof{figure}{\textbf{Simulations with a $\sigma_{\text{bio}}$ that changes across time points.}
-  15 clock genes, 12 time points over two days, 500 cells per time point, 5 replicates per setting. Columns are the depths.
-  \textbf{(A)} Estimated $\sigma_{\text{bio}}$ at each time point for four true profiles (rows). Black: true value. Blue: estimate, mean over the replicates. Bands: standard deviation over the replicates. Dashed orange: oracle estimate $\hat\sigma_{\text{or}}$, with the technical variance computed at the true phases of the cells (defined in the response to R2.3c), mean over the replicates. The true cosine is sampled every 4 h (0.2 to 2.8 h) and repeats on the second day.
-  \textbf{(B)} The single value over all time points (\maineq{16}) for the same profiles (cosine ZT10 and ZT22 are the two cosines of A) and for a control with a true $\sigma_{\text{bio}}$ of 0. Black bar: true single value, the square root of the average of the true $\sigma_{\text{bio}}^2$ weighted by cell number. Blue: estimate. Large markers: mean and standard deviation over the replicates. Small dots: the 5 replicates.}
-  \label{fig:ramp_rnaseq}
-  }
-  \end{minipage}
-\end{figure}
-}
+% The RNA-seq figure (ramp_rnaseq.py, FIGURE_ramp_rnaseq.pdf) is no longer in the
+% rebuttal; it is kept for the manuscript (Supplementary Figure S9).
 
 % ------------------------------------------------------------------ R2.4
 \newcommand{\figReplicates}{%

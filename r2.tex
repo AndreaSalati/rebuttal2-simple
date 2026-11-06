@@ -108,7 +108,7 @@ We ran the simulation the reviewer asks for in two forms, a copy of the SABER-FI
 
 \paragraph{The oracle estimate.}
 
-In both simulations below we also compute an oracle estimate $\hat\sigma_{\text{or}}$. It can only be computed in a simulation, and it measures the errors A1 and A2 of R2.1. The data are the same for both: the true phases are drawn with the true $\sigma_{\text{bio}}$, the counts are simulated at these phases, and the phases are inferred with the fitted model. So both have the same data variance $\Vb$. The two differ only in how the technical variance is computed.
+In both simulations below we also compute an oracle estimate $\hat\sigma_{\text{or}}$. It can only be computed in a simulation, and it measures the errors A1 and A2 of R2.1. We added it to the Methods, after A1 and A2. The data are the same for both: the true phases are drawn with the true $\sigma_{\text{bio}}$, the counts are simulated at these phases, and the phases are inferred with the fitted model. So both have the same data variance $\Vb$. The two differ only in how the technical variance is computed.
 
 Our estimate is $\hat\sigma^2_{\text{bio},b} = \Vb - \sigma^2_{\text{tech},b}$ (\maineq{14}), with $\sigma^2_{\text{tech},b} = f(\mub)$, the variance of the inferred phases of the Twin dataset, in which all cells are put at the mean phase $\mub$ of the group.
 

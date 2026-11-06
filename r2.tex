@@ -38,7 +38,9 @@ In practice we estimate the technical term with a Twin dataset: a copy of the gr
 \end{itemize}
 The size of the bias does not by itself make \maineq{14} wrong. The Twin dataset is inferred with the same estimator as the data, so the bias is inside both variances and cancels in their difference (\cite{gourieroux_indirect_1993} describes a similar effect). Only the change of the bias across the phases of a group is left in A2.
 
-We measured A1 and A2 in the simulations of R2.3c. There we compare our estimate with an oracle estimate $\hat\sigma_{\text{or}}$, which can only be computed in a simulation because it uses the true phase of every cell. It replaces the Twin variance $f(\mub)$ by $\Tb + \Bb - \sbiob^2$, computed at the true phases with the fitted model, so it differs from our estimate only by A1 and A2 (definition in R2.3c). In the simulated copy of the SABER-FISH experiment our estimate is on average 0.16 h above $\hat\sigma_{\text{or}}$ at single time points (\rebfig[A,B]{fig:ramp_fish}). In the RNA-seq style simulation it is 0.04, 0.13 and 0.55 h above it at 30k, 10k and 3k UMI per cell (\rebfig[A]{fig:ramp_rnaseq}). So A1 and A2 are small from 10k upward and matter at 3k. In the average over groups they add less, because they partly cancel (next paragraph).
+We measured A1 and A2 in the simulations of R2.3c. There we compare our estimate with an oracle estimate $\hat\sigma_{\text{or}}$. It uses the same data, but replaces the technical variance of the Twin dataset, $f(\mub)$, by a technical variance computed with each cell at its own true phase, $\sigma^2_{\text{tech,or},b} = \Tb + \Bb - \sbiob^2$. This can only be done in a simulation, where the true phases are known. The two estimates then differ only by A1 and A2 (details in R2.3c).
+
+In the simulated copy of the SABER-FISH experiment our estimate is on average 0.16 h above $\hat\sigma_{\text{or}}$ at single time points (\rebfig[A,B]{fig:ramp_fish}). In the RNA-seq style simulation it is 0.04, 0.13 and 0.55 h above it at 30k, 10k and 3k UMI per cell (\rebfig[A]{fig:ramp_rnaseq}). So A1 and A2 are small from 10k upward and matter at 3k. In the average over groups they add less, because they partly cancel (next paragraph).
 
 \paragraph{The average over groups.}
 
@@ -113,17 +115,25 @@ The true $\sigma_T$ of the ramp is 1.40 h, close to the real estimate (1.37 h). 
 
 At single time points the estimates are too high on average, by 0.52 h for the ramp and 0.43 h for the constant profile, with bumps that repeat across replicates (\rebfig[A]{fig:ramp_fish}, \rebfig[B]{fig:ramp_fish}). 
 % oracles
-To find where this error comes from, we compare our estimate with an oracle estimate $\hat\sigma_{\text{or}}$. It can only be computed in a simulation, because it uses the true phases of the cells. For each time point $b$, we simulate its cells again at their true phases, with the fitted model and their own library sizes, infer their phases as for the data, and take the variance of the inferred phases, $V_{\text{or},b}$ (mean of 5 runs). By Eq.~\eqref{eq:ltv}, $V_{\text{or},b}$ estimates $\Tb + \Bb$ of the fitted model, the variance that the data should have given their true phases. The oracle estimate is the true value plus the difference between the variance of the data and this variance,
-\begin{equation*}
-\hat\sigma^2_{\text{or},b} = \sbiob^2 + \Vb - V_{\text{or},b}.
-\end{equation*}
-Our estimate is $\hat\sigma^2_{\text{bio},b} = \Vb - f(\mub)$ (\maineq{14}). Both use the same data and the same fitted model, so
-\begin{equation*}
-\hat\sigma^2_{\text{bio},b} - \hat\sigma^2_{\text{or},b} = \underbrace{\Tb - f(\mub)}_{\text{A1}} + \underbrace{\Bb - \sbiob^2}_{\text{A2}},
-\end{equation*}
-and the two estimates differ only by A1 and A2 of R2.1. Apart from the noise of the simulation, $\hat\sigma_{\text{or}}$ differs from the true value only by the error of the fitted gene parameters.
+To find where this error comes from, we compare our estimate with an oracle estimate $\hat\sigma_{\text{or}}$, which can only be computed in a simulation. The data are the same for both: the true phases are drawn with the true $\sigma_{\text{bio}}$, the counts are simulated at these phases, and the phases are inferred with the fitted model. So both have the same data variance $\Vb$. The two differ only in how the technical variance is computed.
 
-$\hat\sigma_{\text{or}}$ shows the same bumps and a similar offset ($+0.37$ h for the ramp and $+0.27$ h for the constant profile, dashed orange in \rebfig[A,B]{fig:ramp_fish}). Apart from the noise of the simulation, its only error is the error of the fitted gene parameters. So most of the error comes from the fitted model, and A1 and A2 add about 0.16 h on average (between $-0.2$ and $+0.6$ h depending on the time point). $\hat\sigma_{\text{or}}$ also gives a similar $\sigma_T$, $1.31 \pm 0.21$ h for the ramp and $0.32 \pm 0.27$ h for the constant profile (\rebfig[C,D]{fig:ramp_fish}). The simulation has limits: the true profile is a straight line, the simulated time points lie on an exact 24 h clock while the real mean phases are up to 1.7 h away from it, and the generator is the fitted model.
+Our estimate is $\hat\sigma^2_{\text{bio},b} = \Vb - \sigma^2_{\text{tech},b}$ (\maineq{14}), with $\sigma^2_{\text{tech},b} = f(\mub)$, the variance of the inferred phases of the Twin dataset, in which all cells are put at the mean phase $\mub$ of the group.
+
+The oracle builds the Twin dataset differently: each cell is put at its own true phase instead of at $\mub$, with the same fitted model and library sizes (mean of 5 runs). This is possible only in a simulation, where the true phases are known. By Eq.~\eqref{eq:ltv}, computed with the fitted model, the variance of the inferred phases of this dataset is $\Tb + \Bb$. It still contains the true biological spread $\sbiob^2$, which is also known in the simulation, so we remove it and get the oracle technical variance
+\begin{equation*}
+\sigma^2_{\text{tech,or},b} = \Tb + \Bb - \sbiob^2 .
+\end{equation*}
+This is the average technical variance over the true phases of the cells ($\Tb$) plus the change of the spread caused by the bias ($\Bb - \sbiob^2$), the term that $f(\mub)$ approximates in \maineq{14}. The oracle estimate is $\hat\sigma^2_{\text{or},b} = \Vb - \sigma^2_{\text{tech,or},b}$.
+
+The two estimates differ only in the technical variance,
+\begin{equation*}
+\hat\sigma^2_{\text{bio},b} - \hat\sigma^2_{\text{or},b} = \sigma^2_{\text{tech,or},b} - \sigma^2_{\text{tech},b} = \underbrace{\Tb - f(\mub)}_{\text{A1}} + \underbrace{\Bb - \sbiob^2}_{\text{A2}},
+\end{equation*}
+so their difference measures A1 and A2 of R2.1. Both use the fitted model, so both contain the error of the fitted gene parameters. Apart from the noise of the simulation, this is the only error of $\hat\sigma_{\text{or}}$.
+
+$\hat\sigma_{\text{or}}$ shows the same bumps and a similar offset ($+0.37$ h for the ramp and $+0.27$ h for the constant profile, dashed orange in \rebfig[A,B]{fig:ramp_fish}). So most of the error comes from the fitted model, and A1 and A2 add about 0.16 h on average (between $-0.2$ and $+0.6$ h depending on the time point). $\hat\sigma_{\text{or}}$ also gives a similar $\sigma_T$, $1.31 \pm 0.21$ h for the ramp and $0.32 \pm 0.27$ h for the constant profile (\rebfig[C,D]{fig:ramp_fish}).
+
+The simulation has limits: the true profile is a straight line, the simulated time points lie on an exact 24 h clock while the real mean phases are up to 1.7 h away from it, and the generator is the fitted model.
 
 \paragraph{RNA-seq style simulation.}
 

@@ -73,7 +73,7 @@ Therefore, the authors need to give a clear justification for applying their met
 If this is only a very approximate and empirical application of the method, the authors should accordingly tone down their claims of discovering increasing desynchrony and using this dataset as a strong validation of their method.}
 
 \response
-We thank the reviewer. As described in R2.3a, we changed the text so that no single value of $\sigma_{\text{bio}}$ is required across time points, and the Discussion no longer describes the SABER-FISH dataset as a ground-truth validation. There is no conflict, as explained in R2.3a. The SABER-FISH analysis does not need the same $\sigma_{\text{bio}}$ at all time points. We show this with simulations in which $\sigma_{\text{bio}}$ rises over time, below in R2.3c.
+We thank the reviewer. There is no conflict: as explained in R2.3a, the SABER-FISH analysis does not need the same $\sigma_{\text{bio}}$ at all time points, and we changed the text so that no single value is required. The Discussion no longer describes the SABER-FISH dataset as a validation against a ground truth. Simulations in which $\sigma_{\text{bio}}$ rises over time are in R2.3c.
 
 
 
@@ -124,7 +124,7 @@ To better understand the limits of the aggregation procedure, the authors should
 \response
 We thank the reviewer. We added this simulation to the manuscript as panel H of Supplementary Figure S1 and now say so in the Results.
 
-We simulated the case of the reviewer. The 4 time points are fixed at 0, 6, 12 and 18 h, and we changed the number of samples at each of them (1, 2 or 3, so 4, 8 or 12 samples in total), at 3k, 10k and 30k UMI per cell, with a true $\sigma_{\text{bio}}$ of about 2.5 h (\rebfig{fig:replicates}). With 4 samples the single value of $\sigma_{\text{bio}}$ (\maineq{16}) is still close to the truth. The mean error is $-0.03$ h at 10k and 30k UMI, with a standard deviation over the 10 simulated datasets of 0.10 h at 10k and 0.04 h at 30k. At 3k UMI the error is larger ($+0.12$ h with a standard deviation of 0.17 h). Going to 8 or 12 samples does not change the error much. So the number of samples matters little, as long as they span the whole cycle. The depth matters more. The error stays within about 0.1 h at 10k UMI and above, and this includes the small error left by the approximations A1 and A2 of R2.1.
+We simulated the case of the reviewer. The 4 time points are fixed at 0, 6, 12 and 18 h, and we changed the number of samples at each of them (1, 2 or 3, so 4, 8 or 12 samples in total), at 3k, 10k and 30k UMI per cell, with a true $\sigma_{\text{bio}}$ of about 2.5 h (\rebfig{fig:replicates}). With 4 samples the single value of $\sigma_{\text{bio}}$ (\maineq{16}) is still close to the truth. The mean error is $-0.03$ h at 10k and 30k UMI, with a standard deviation over the 10 simulated datasets of 0.10 h at 10k and 0.04 h at 30k. At 3k UMI the error is larger ($+0.12$ h with a standard deviation of 0.17 h). Going to 8 or 12 samples does not change the error much, as long as the samples span the whole cycle. The depth matters more: the error stays within about 0.1 h at 10k UMI and above.
 
 \figReplicates
 
@@ -140,7 +140,7 @@ Does this suggest that in fact there are significant errors being made in phase 
 If so, I would recommend discussing this in the Main Text and also toning down the statement ``The inferred phase accurately reconstructed the oscillation of both the endogenous (Rev-Erb$\alpha$) mRNA level and the Rev-Erb$\alpha$-Venus protein fluorescence'', since the meaning of ``accurately'' cannot really be quantitatively established in this setting.}
 
 \response
-We thank the reviewer. We agree that ``accurately'' is too strong, and we removed it from the abstract, the Results and the Discussion. The Results now also say that the reporter is degraded fast, so its delay after the mRNA is expected to be short. We also agree that a protein should lag its mRNA. The reporter protein we use is built to be degraded fast, which limits how long its lag after the mRNA can be.
+We thank the reviewer. We agree that ``accurately'' is too strong, and we removed it from the abstract, the Results and the Discussion. We also agree that a protein should lag its mRNA. The reporter we use is built to be degraded fast, which keeps this lag short, and the Results now say so.
 
 The reporter is Venus fused to a nuclear localization signal and a PEST sequence, which targets proteins for fast degradation, expressed under \textit{Nr1d1} regulatory sequences \cite{nagoshi_circadian_2004}. For a protein made in proportion to its mRNA and degraded at a constant rate, the delay of a 24 h rhythm is
 \begin{equation}

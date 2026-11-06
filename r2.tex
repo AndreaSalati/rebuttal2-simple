@@ -106,16 +106,9 @@ We thank the reviewer. We added these simulations to the manuscript as Supplemen
 
 We ran the simulation the reviewer asks for in two forms, a copy of the SABER-FISH experiment (\rebfig{fig:ramp_fish}) and an RNA-seq style experiment (\rebfig{fig:ramp_rnaseq}). In both, a rise of $\sigma_{\text{bio}}$ over time is recovered with a slope about 10 to 15\% too small, and a constant or cyclic $\sigma_{\text{bio}}$ does not produce one. The estimates at single time points are less accurate than the slope, mainly because of the error of the fitted model.
 
-\paragraph{SABER-FISH style simulation.}
+\paragraph{The oracle estimate.}
 
-The data are generated from the model fitted to the real data (4 genes), with the 12 real time points, the real number of cells and the cell areas of each time point. The true phases of a time point follow a wrapped normal distribution, with $\sigma_{\text{bio}}$ rising linearly from 1.0 to 3.5 h, or constant at 2.24 h (the mean of the ramp). Each of 10 replicates was fitted again and analyzed with the settings of the real data. 
-As for the real data, we fitted a line to $\sigma_{\text{bio}}$ against time over the 11 time points after the first, with slope $s$, and give it as a spread of periods $\sigma_T \approx 24~\text{h} \times s$ (cells with angular velocities $\omega \sim \mathcal{N}(\mu_\omega, \sigma_\omega^2)$, $\sigma_\omega = 2\pi s / 24~\text{h}$, small $s$).
-
-The true $\sigma_T$ of the ramp is 1.40 h, close to the real estimate (1.37 h). Our estimate is $1.26 \pm 0.17$ h over the 10 replicates, 10\% too small (\rebfig[C]{fig:ramp_fish}). For the constant profile the true $\sigma_T$ is 0.18 h, because the spread of the phases actually drawn varies a little between time points, and the estimate is $0.29 \pm 0.14$ h (\rebfig[D]{fig:ramp_fish}). A line fitted without the constraint that the slope is not negative differs from zero ($t$ test, 5\% level) in all 10 replicates of the ramp and in none of the constant profile.
-
-At single time points the estimates are too high on average, by 0.52 h for the ramp and 0.43 h for the constant profile, with bumps that repeat across replicates (\rebfig[A]{fig:ramp_fish}, \rebfig[B]{fig:ramp_fish}). 
-% oracles
-To find where this error comes from, we compare our estimate with an oracle estimate $\hat\sigma_{\text{or}}$, which can only be computed in a simulation. The data are the same for both: the true phases are drawn with the true $\sigma_{\text{bio}}$, the counts are simulated at these phases, and the phases are inferred with the fitted model. So both have the same data variance $\Vb$. The two differ only in how the technical variance is computed.
+In both simulations below we also compute an oracle estimate $\hat\sigma_{\text{or}}$. It can only be computed in a simulation, and it measures the errors A1 and A2 of R2.1. The data are the same for both: the true phases are drawn with the true $\sigma_{\text{bio}}$, the counts are simulated at these phases, and the phases are inferred with the fitted model. So both have the same data variance $\Vb$. The two differ only in how the technical variance is computed.
 
 Our estimate is $\hat\sigma^2_{\text{bio},b} = \Vb - \sigma^2_{\text{tech},b}$ (\maineq{14}), with $\sigma^2_{\text{tech},b} = f(\mub)$, the variance of the inferred phases of the Twin dataset, in which all cells are put at the mean phase $\mub$ of the group.
 
@@ -131,7 +124,14 @@ The two estimates differ only in the technical variance,
 \end{equation*}
 so their difference measures A1 and A2 of R2.1. Both use the fitted model, so both contain the error of the fitted gene parameters. Apart from the noise of the simulation, this is the only error of $\hat\sigma_{\text{or}}$.
 
-$\hat\sigma_{\text{or}}$ shows the same bumps and a similar offset ($+0.37$ h for the ramp and $+0.27$ h for the constant profile, dashed orange in \rebfig[A,B]{fig:ramp_fish}). So most of the error comes from the fitted model, and A1 and A2 add about 0.16 h on average (between $-0.2$ and $+0.6$ h depending on the time point). $\hat\sigma_{\text{or}}$ also gives a similar $\sigma_T$, $1.31 \pm 0.21$ h for the ramp and $0.32 \pm 0.27$ h for the constant profile (\rebfig[C,D]{fig:ramp_fish}).
+\paragraph{SABER-FISH style simulation.}
+
+The data are generated from the model fitted to the real data (4 genes), with the 12 real time points, the real number of cells and the cell areas of each time point. The true phases of a time point follow a wrapped normal distribution, with $\sigma_{\text{bio}}$ rising linearly from 1.0 to 3.5 h, or constant at 2.24 h (the mean of the ramp). Each of 10 replicates was fitted again and analyzed with the settings of the real data. 
+As for the real data, we fitted a line to $\sigma_{\text{bio}}$ against time over the 11 time points after the first, with slope $s$, and give it as a spread of periods $\sigma_T \approx 24~\text{h} \times s$ (cells with angular velocities $\omega \sim \mathcal{N}(\mu_\omega, \sigma_\omega^2)$, $\sigma_\omega = 2\pi s / 24~\text{h}$, small $s$).
+
+The true $\sigma_T$ of the ramp is 1.40 h, close to the real estimate (1.37 h). Our estimate is $1.26 \pm 0.17$ h over the 10 replicates, 10\% too small (\rebfig[C]{fig:ramp_fish}). For the constant profile the true $\sigma_T$ is 0.18 h, because the spread of the phases actually drawn varies a little between time points, and the estimate is $0.29 \pm 0.14$ h (\rebfig[D]{fig:ramp_fish}). A line fitted without the constraint that the slope is not negative differs from zero ($t$ test, 5\% level) in all 10 replicates of the ramp and in none of the constant profile.
+
+At single time points the estimates are too high on average, by 0.52 h for the ramp and 0.43 h for the constant profile, with bumps that repeat across replicates (\rebfig[A]{fig:ramp_fish}, \rebfig[B]{fig:ramp_fish}). The oracle estimate $\hat\sigma_{\text{or}}$ shows the same bumps and a similar offset ($+0.37$ h for the ramp and $+0.27$ h for the constant profile, dashed orange in \rebfig[A,B]{fig:ramp_fish}). So most of the error comes from the fitted model, and A1 and A2 add about 0.16 h on average (between $-0.2$ and $+0.6$ h depending on the time point). $\hat\sigma_{\text{or}}$ also gives a similar $\sigma_T$, $1.31 \pm 0.21$ h for the ramp and $0.32 \pm 0.27$ h for the constant profile (\rebfig[C,D]{fig:ramp_fish}).
 
 The simulation has limits: the true profile is a straight line, the simulated time points lie on an exact 24 h clock while the real mean phases are up to 1.7 h away from it, and the generator is the fitted model.
 
